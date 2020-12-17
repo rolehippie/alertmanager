@@ -1,0 +1,52 @@
+---
+- name: Create required directories
+  loop: "{{ alertmanager_default_folders + alertmanager_extra_folders }}"
+  file:
+    path: "{{ item }}"
+    owner: nobody
+    group: nogroup
+    recurse: True
+    state: directory
+  tags:
+    - alertmanager
+
+- name: Write general config
+  notify:
+    - Restart alertmanager
+  template:
+    src: config.j2
+    dest: /etc/alertmanager/alertmanager.yml
+    owner: nobody
+    group: nogroup
+  tags:
+    - alertmanager
+
+- name: Write default config
+  notify:
+    - Restart alertmanager
+  template:
+    src: default.j2
+    dest: /etc/default/alertmanager
+  tags:
+    - alertmanager
+
+- name: Write service file
+  notify:
+    - Restart alertmanager
+  template:
+    src: service.j2
+    dest: /etc/systemd/system/alertmanager.service
+  tags:
+    - alertmanager
+
+- name: Start alertmanager service
+  systemd:
+    name: alertmanager
+    state: started
+    daemon_reload: True
+    masked: False
+    enabled: True
+  tags:
+    - alertmanager
+
+...

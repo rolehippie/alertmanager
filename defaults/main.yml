@@ -1,0 +1,126 @@
+---
+# @var alertmanager_version:description: Version of Alertmanager to use
+alertmanager_version: 0.21.0
+
+# @var alertmanager_image:description: Docker image to use for deployment
+alertmanager_image: "quay.io/prometheus/alertmanager:v{{ alertmanager_version }}"
+
+# @var alertmanager_network:description: Optionally assign this Docker network to container
+alertmanager_network:
+
+# @var alertmanager_default_publish:description: List of default port publishing
+# @var alertmanager_default_publish:example: >
+# alertmanager_default_publish:
+#   - 127.0.0.1:9093:9093
+# @end
+alertmanager_default_publish:
+  - 9093:9093
+
+# @var alertmanager_extra_publish:description: List of extra port publishing
+# @var alertmanager_extra_publish:example: >
+# alertmanager_extra_publish:
+#   - 8080:8080
+#   - 127.0.0.1:9000:9000
+# @end
+alertmanager_extra_publish: []
+
+# @var alertmanager_default_labels:description: List of default labels to assign to docker command
+alertmanager_default_labels: []
+
+# @var alertmanager_extra_labels:description: List of extra labels to assign to docker command
+alertmanager_extra_labels: []
+
+# @var alertmanager_default_folders:description: List of default folders to create
+alertmanager_default_folders:
+  - /etc/alertmanager
+  - /var/lib/alertmanager
+
+# @var alertmanager_extra_folders:description: List of extra folders to create
+# @var alertmanager_extra_folders:example: >
+# alertmanager_extra_folders:
+#   - /path/to/host/folder1
+#   - /path/to/host/folder2
+#   - /path/to/host/folder3
+# @end
+alertmanager_extra_folders: []
+
+# @var alertmanager_default_volumes:description: List of default volumes to mount
+alertmanager_default_volumes:
+  - /var/lib/alertmanager:/var/lib/alertmanager
+
+# @var alertmanager_extra_volumes:description: List of extra volumes to mount
+# @var alertmanager_extra_volumes:example: >
+# alertmanager_extra_volumes:
+#   - /path/to/host/folder1:/path/within/container1
+#   - /path/to/host/folder2:/path/within/container2
+#   - /path/to/host/folder3:/path/within/container3
+# @end
+alertmanager_extra_volumes: []
+
+# @var alertmanager_domain:description: Domain for external access
+# @var alertmanager_domain:example: $ "https://alertmanager.example.com"
+alertmanager_domain:
+
+# @var alertmanager_data_retention:description: Data retention for alertmanager state
+alertmanager_data_retention: 120h
+
+# @var alertmanager_smtp_from:description: Sender for emails
+alertmanager_smtp_from:
+
+# @var alertmanager_smtp_smarthost:description: Host for SMTP connection
+alertmanager_smtp_smarthost:
+
+# @var alertmanager_smtp_username:description: Username for SMTP connection
+alertmanager_smtp_username:
+
+# @var alertmanager_smtp_password:description: Password for SMTP connection
+alertmanager_smtp_password:
+
+# @var alertmanager_smtp_require_tls:description: Require TLS for SMTP connection
+alertmanager_smtp_require_tls: True
+
+# @var alertmanager_receiver:description: Standard conect for alerts
+alertmanager_receiver:
+
+# @var alertmanager_group_by:description: List of alerting groups
+# @var alertmanager_group_by:example: >
+# alertmanager_group_by:
+#   - alertname
+#   - app
+# @end
+alertmanager_group_by: []
+
+# @var alertmanager_routes:description: List of alerting routes
+# @var alertmanager_routes:example: >
+# alertmanager_routes:
+#   - receiver: mail-devops
+#     match:
+#       severity: critical
+# @end
+alertmanager_routes: []
+
+# @var alertmanager_receivers:description: List of alerting recipients
+# @var alertmanager_receivers:example: >
+# alertmanager_receivers:
+#   - name: mail-devops
+#     email_configs:
+#       - to: devops@example.com
+#         send_resolved: True
+# @end
+alertmanager_receivers: []
+
+# @var alertmanager_inhibit_rules:description: List of alerting recipients
+# @var alertmanager_inhibit_rules:example: >
+# alertmanager_inhibit_rules:
+#   - source_match:
+#       severity: critical
+#     target_match:
+#       severity: 'warning'
+#     equal:
+#       - alertname
+#       - dev
+#       - instance
+# @end
+alertmanager_inhibit_rules: []
+
+...

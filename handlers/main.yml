@@ -1,0 +1,9 @@
+# Standards: 1.2
+---
+- name: Restart alertmanager
+  systemd:
+    name: alertmanager
+    state: restarted
+    daemon_reload: True
+
+...
