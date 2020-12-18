@@ -360,7 +360,7 @@ alertmanager_version: 0.21.0
 
 ## Dependencies
 
-* None
+* [rolehippie.docker](https://github.com/rolehippie/docker)
 
 ## License
 

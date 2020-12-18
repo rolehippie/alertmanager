@@ -1,3 +1,4 @@
+# Standards: 1.2
 ---
 # @var alertmanager_version:description: Version of Alertmanager to use
 alertmanager_version: 0.21.0
