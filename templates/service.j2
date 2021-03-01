@@ -1,44 +1,11 @@
 [Unit]
-Description=Alertmanager
-
-Wants=docker.service
-After=docker.service
+Description=Alertmanager for Prometheus monitoring
 
 [Service]
 Restart=always
-RestartSec=10s
-EnvironmentFile=/etc/environment
-
-ExecStop=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker stop %p || true'
-ExecStartPre=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker kill %p || true'
-ExecStartPre=/bin/sh -c '/usr/bin/docker ps -a | /bin/grep %p 1> /dev/null && /usr/bin/docker rm %p || true'
-ExecStartPre=/usr/bin/docker pull {{ alertmanager_image }}
-ExecStart=/usr/bin/docker run --rm \
-  --name %p \
-  --hostname %p \
-{% for item in alertmanager_default_labels + alertmanager_extra_labels %}
-  --label {{ item }} \
-{% endfor %}
-  --env-file /etc/default/alertmanager \
-{% if alertmanager_network | default(False) %}
-  --network {{ alertmanager_network }} \
-{% endif %}
-  --volume /etc/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml \
-{% for item in alertmanager_default_volumes + alertmanager_extra_volumes %}
-  --volume {{ item }} \
-{% endfor %}
-{% for item in alertmanager_default_publish + alertmanager_extra_publish %}
-  --publish {{ item }} \
-{% endfor %}
-  --health-cmd 'wget -q --spider http://localhost:9093/' \
-  --health-interval 30s \
-  --health-retries 5 \
-  --health-timeout 10s \
-  {{ alertmanager_image }} \
-  --config.file=/etc/alertmanager/alertmanager.yml \
-  --storage.path=/var/lib/alertmanager \
-  --data.retention={{ alertmanager_data_retention }} \
-  --web.external-url={{ alertmanager_domain }}
+User=alertmanager
+EnvironmentFile=/etc/default/alertmanager
+ExecStart=/usr/bin/alertmanager $ARGS
 
 [Install]
 WantedBy=multi-user.target

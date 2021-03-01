@@ -14,19 +14,10 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
 
 * [Default Variables](#default-variables)
   * [alertmanager_data_retention](#alertmanager_data_retention)
-  * [alertmanager_default_folders](#alertmanager_default_folders)
-  * [alertmanager_default_labels](#alertmanager_default_labels)
-  * [alertmanager_default_publish](#alertmanager_default_publish)
-  * [alertmanager_default_volumes](#alertmanager_default_volumes)
   * [alertmanager_domain](#alertmanager_domain)
-  * [alertmanager_extra_folders](#alertmanager_extra_folders)
-  * [alertmanager_extra_labels](#alertmanager_extra_labels)
-  * [alertmanager_extra_publish](#alertmanager_extra_publish)
-  * [alertmanager_extra_volumes](#alertmanager_extra_volumes)
+  * [alertmanager_download](#alertmanager_download)
   * [alertmanager_group_by](#alertmanager_group_by)
-  * [alertmanager_image](#alertmanager_image)
   * [alertmanager_inhibit_rules](#alertmanager_inhibit_rules)
-  * [alertmanager_network](#alertmanager_network)
   * [alertmanager_receiver](#alertmanager_receiver)
   * [alertmanager_receivers](#alertmanager_receivers)
   * [alertmanager_routes](#alertmanager_routes)
@@ -54,57 +45,6 @@ Data retention for alertmanager state
 alertmanager_data_retention: 120h
 ```
 
-### alertmanager_default_folders
-
-List of default folders to create
-
-#### Default value
-
-```YAML
-alertmanager_default_folders:
-  - /etc/alertmanager
-  - /var/lib/alertmanager
-```
-
-### alertmanager_default_labels
-
-List of default labels to assign to docker command
-
-#### Default value
-
-```YAML
-alertmanager_default_labels: []
-```
-
-### alertmanager_default_publish
-
-List of default port publishing
-
-#### Default value
-
-```YAML
-alertmanager_default_publish:
-  - 9093:9093
-```
-
-#### Example usage
-
-```YAML
-alertmanager_default_publish:
-  - 127.0.0.1:9093:9093
-```
-
-### alertmanager_default_volumes
-
-List of default volumes to mount
-
-#### Default value
-
-```YAML
-alertmanager_default_volumes:
-  - /var/lib/alertmanager:/var/lib/alertmanager
-```
-
 ### alertmanager_domain
 
 Domain for external access
@@ -121,70 +61,15 @@ alertmanager_domain:
 alertmanager_domain: https://alertmanager.example.com
 ```
 
-### alertmanager_extra_folders
+### alertmanager_download
 
-List of extra folders to create
-
-#### Default value
-
-```YAML
-alertmanager_extra_folders: []
-```
-
-#### Example usage
-
-```YAML
-alertmanager_extra_folders:
-  - /path/to/host/folder1
-  - /path/to/host/folder2
-  - /path/to/host/folder3
-```
-
-### alertmanager_extra_labels
-
-List of extra labels to assign to docker command
+URL to the archive of the release to install
 
 #### Default value
 
 ```YAML
-alertmanager_extra_labels: []
-```
-
-### alertmanager_extra_publish
-
-List of extra port publishing
-
-#### Default value
-
-```YAML
-alertmanager_extra_publish: []
-```
-
-#### Example usage
-
-```YAML
-alertmanager_extra_publish:
-  - 8080:8080
-  - 127.0.0.1:9000:9000
-```
-
-### alertmanager_extra_volumes
-
-List of extra volumes to mount
-
-#### Default value
-
-```YAML
-alertmanager_extra_volumes: []
-```
-
-#### Example usage
-
-```YAML
-alertmanager_extra_volumes:
-  - /path/to/host/folder1:/path/within/container1
-  - /path/to/host/folder2:/path/within/container2
-  - /path/to/host/folder3:/path/within/container3
+alertmanager_download: https://github.com/prometheus/alertmanager/releases/download/v{{
+  alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz
 ```
 
 ### alertmanager_group_by
@@ -203,16 +88,6 @@ alertmanager_group_by: []
 alertmanager_group_by:
   - alertname
   - app
-```
-
-### alertmanager_image
-
-Docker image to use for deployment
-
-#### Default value
-
-```YAML
-alertmanager_image: quay.io/prometheus/alertmanager:v{{ alertmanager_version }}
 ```
 
 ### alertmanager_inhibit_rules
@@ -237,16 +112,6 @@ alertmanager_inhibit_rules:
       - alertname
       - dev
       - instance
-```
-
-### alertmanager_network
-
-Optionally assign this Docker network to container
-
-#### Default value
-
-```YAML
-alertmanager_network:
 ```
 
 ### alertmanager_receiver
@@ -350,7 +215,7 @@ alertmanager_smtp_username:
 
 ### alertmanager_version
 
-Version of Alertmanager to use
+Version of the release to install
 
 #### Default value
 

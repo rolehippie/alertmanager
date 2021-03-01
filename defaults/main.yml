@@ -1,62 +1,10 @@
-# Standards: 1.2
+# Standards: 0.1
 ---
-# @var alertmanager_version:description: Version of Alertmanager to use
+# @var alertmanager_version:description: Version of the release to install
 alertmanager_version: 0.21.0
 
-# @var alertmanager_image:description: Docker image to use for deployment
-alertmanager_image: "quay.io/prometheus/alertmanager:v{{ alertmanager_version }}"
-
-# @var alertmanager_network:description: Optionally assign this Docker network to container
-alertmanager_network:
-
-# @var alertmanager_default_publish:description: List of default port publishing
-# @var alertmanager_default_publish:example: >
-# alertmanager_default_publish:
-#   - 127.0.0.1:9093:9093
-# @end
-alertmanager_default_publish:
-  - 9093:9093
-
-# @var alertmanager_extra_publish:description: List of extra port publishing
-# @var alertmanager_extra_publish:example: >
-# alertmanager_extra_publish:
-#   - 8080:8080
-#   - 127.0.0.1:9000:9000
-# @end
-alertmanager_extra_publish: []
-
-# @var alertmanager_default_labels:description: List of default labels to assign to docker command
-alertmanager_default_labels: []
-
-# @var alertmanager_extra_labels:description: List of extra labels to assign to docker command
-alertmanager_extra_labels: []
-
-# @var alertmanager_default_folders:description: List of default folders to create
-alertmanager_default_folders:
-  - /etc/alertmanager
-  - /var/lib/alertmanager
-
-# @var alertmanager_extra_folders:description: List of extra folders to create
-# @var alertmanager_extra_folders:example: >
-# alertmanager_extra_folders:
-#   - /path/to/host/folder1
-#   - /path/to/host/folder2
-#   - /path/to/host/folder3
-# @end
-alertmanager_extra_folders: []
-
-# @var alertmanager_default_volumes:description: List of default volumes to mount
-alertmanager_default_volumes:
-  - /var/lib/alertmanager:/var/lib/alertmanager
-
-# @var alertmanager_extra_volumes:description: List of extra volumes to mount
-# @var alertmanager_extra_volumes:example: >
-# alertmanager_extra_volumes:
-#   - /path/to/host/folder1:/path/within/container1
-#   - /path/to/host/folder2:/path/within/container2
-#   - /path/to/host/folder3:/path/within/container3
-# @end
-alertmanager_extra_volumes: []
+# @var alertmanager_download:description: URL to the archive of the release to install
+alertmanager_download: "https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz"
 
 # @var alertmanager_domain:description: Domain for external access
 # @var alertmanager_domain:example: $ "https://alertmanager.example.com"
