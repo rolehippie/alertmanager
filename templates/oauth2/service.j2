@@ -1,0 +1,15 @@
+[Unit]
+Description=OAuth2 Proxy for Alertmanager
+
+After=network.target
+
+[Service]
+Restart=always
+KillMode=process
+User=alertmanager
+EnvironmentFile=/etc/default/alertmanager-oauth2
+ExecStart=/usr/bin/alertmanager-oauth2
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

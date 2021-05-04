@@ -6,4 +6,10 @@
     state: restarted
     daemon_reload: True
 
+- name: Restart alertmanager-oauth2
+  systemd:
+    name: alertmanager-oauth2
+    state: restarted
+    daemon_reload: yes
+
 ...

@@ -18,6 +18,20 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
   * [alertmanager_download](#alertmanager_download)
   * [alertmanager_group_by](#alertmanager_group_by)
   * [alertmanager_inhibit_rules](#alertmanager_inhibit_rules)
+  * [alertmanager_listen_address](#alertmanager_listen_address)
+  * [alertmanager_oauth2_allowed_groups](#alertmanager_oauth2_allowed_groups)
+  * [alertmanager_oauth2_client_id](#alertmanager_oauth2_client_id)
+  * [alertmanager_oauth2_client_secret](#alertmanager_oauth2_client_secret)
+  * [alertmanager_oauth2_cookie_secret](#alertmanager_oauth2_cookie_secret)
+  * [alertmanager_oauth2_download](#alertmanager_oauth2_download)
+  * [alertmanager_oauth2_enabled](#alertmanager_oauth2_enabled)
+  * [alertmanager_oauth2_keycloak_url](#alertmanager_oauth2_keycloak_url)
+  * [alertmanager_oauth2_listen_address](#alertmanager_oauth2_listen_address)
+  * [alertmanager_oauth2_provider](#alertmanager_oauth2_provider)
+  * [alertmanager_oauth2_static_groups](#alertmanager_oauth2_static_groups)
+  * [alertmanager_oauth2_static_users](#alertmanager_oauth2_static_users)
+  * [alertmanager_oauth2_upstream](#alertmanager_oauth2_upstream)
+  * [alertmanager_oauth2_version](#alertmanager_oauth2_version)
   * [alertmanager_receiver](#alertmanager_receiver)
   * [alertmanager_receivers](#alertmanager_receivers)
   * [alertmanager_routes](#alertmanager_routes)
@@ -112,6 +126,166 @@ alertmanager_inhibit_rules:
       - alertname
       - dev
       - instance
+```
+
+### alertmanager_listen_address
+
+Listen address for the alertmanager
+
+#### Default value
+
+```YAML
+alertmanager_listen_address: 0.0.0.0:9093
+```
+
+### alertmanager_oauth2_allowed_groups
+
+List of groups to allow access
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_allowed_groups: []
+```
+
+#### Example usage
+
+```YAML
+alertmanager_oauth2_allowed_groups:
+  - /Group1
+  - /Group2
+  - /Group3
+```
+
+### alertmanager_oauth2_client_id
+
+Client ID for OAuth2 authentication
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_client_id:
+```
+
+### alertmanager_oauth2_client_secret
+
+Client secret for OAuth2 authentication
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_client_secret:
+```
+
+### alertmanager_oauth2_cookie_secret
+
+Cookie secret used by OAuth2 proxy
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_cookie_secret:
+```
+
+### alertmanager_oauth2_download
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_download: https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{
+  alertmanager_oauth2_version }}/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-amd64.tar.gz
+```
+
+### alertmanager_oauth2_enabled
+
+URL of the OAuth2 Proxy to download
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_enabled: false
+```
+
+### alertmanager_oauth2_keycloak_url
+
+URL of the Keycloak realm
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_keycloak_url:
+```
+
+### alertmanager_oauth2_listen_address
+
+Listem address for the OAuth2 proxy
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_listen_address: 0.0.0.0:9092
+```
+
+### alertmanager_oauth2_provider
+
+Provider for OAuth2 authentication
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_provider: keycloak
+```
+
+### alertmanager_oauth2_static_groups
+
+List of groups assigned to static users
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_static_groups: []
+```
+
+### alertmanager_oauth2_static_users
+
+List of users to allow access
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_static_users: []
+```
+
+#### Example usage
+
+```YAML
+alertmanager_oauth2_static_users:
+  - username: username1
+    password: p455w0rd
+  - username: username2
+    password: p455w0rd
+  - username: username3
+    password: p455w0rd
+```
+
+### alertmanager_oauth2_upstream
+
+Upstream target for the OAuth2 proxy
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_upstream: http://{{ alertmanager_listen_address }}
+```
+
+### alertmanager_oauth2_version
+
+Version of the OAuth2 Proxy to download
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_version: 7.1.3
 ```
 
 ### alertmanager_receiver

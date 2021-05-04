@@ -1,1 +1,1 @@
-ARGS="--config.file=/etc/alertmanager/config.yml --storage.path=/var/lib/alertmanager --web.external-url=https://{{ alertmanager_domain }} --data.retention={{ alertmanager_data_retention }}"
+ARGS="--config.file=/etc/alertmanager/config.yml --storage.path=/var/lib/alertmanager --web.external-url={{ alertmanager_domain }} --data.retention={{ alertmanager_data_retention }} --web.listen-address={{ alertmanager_listen_address }}"

@@ -1,0 +1,118 @@
+# Standards: 1.2
+---
+- name: Install required packages
+  when: alertmanager_oauth2_static_users | default(False)
+  loop:
+    - python3-passlib
+    - python3-bcrypt
+  package:
+    name: "{{ item }}"
+    state: present
+  tags:
+    - alertmanager
+    - oauth2
+
+- name: Check existing install
+  register: alertmanager_oauth2_version_check
+  failed_when: False
+  changed_when: False
+  check_mode: False
+  command: /usr/bin/alertmanager-oauth2 --version
+  tags:
+    - alertmanager
+    - oauth2
+
+- name: Fact version change
+  set_fact:
+    alertmanager_oauth2_version_changed: "{{ alertmanager_oauth2_version_check.rc != 0 or (alertmanager_oauth2_version_check.stdout_lines is defined and alertmanager_oauth2_version not in alertmanager_oauth2_version_check.stdout_lines[0]) | bool }}"
+  tags:
+    - alertmanager
+    - oauth2
+
+- name: Download release tarball
+  when: alertmanager_oauth2_version_changed
+  unarchive:
+    src: "{{ alertmanager_oauth2_download }}"
+    dest: /usr/local/src
+    remote_src: True
+    owner: root
+    group: root
+  tags:
+    - alertmanager
+    - oauth2
+
+- name: Copy oauth2 binary
+  when: alertmanager_oauth2_version_changed and not ansible_check_mode
+  notify:
+    - Restart alertmanager-oauth2
+  copy:
+    src: "/usr/local/src/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-amd64/oauth2-proxy"
+    dest: /usr/bin/alertmanager-oauth2
+    remote_src: True
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  tags:
+    - alertmanager
+    - oauth2
+
+- name: Write users config
+  when: alertmanager_oauth2_static_users | default(False)
+  loop: "{{ alertmanager_oauth2_static_users }}"
+  loop_control:
+    label: "{{ item.username }}"
+  notify:
+    - Restart alertmanager-oauth2
+  htpasswd:
+    path: /etc/alertmanager/htpasswd
+    name: "{{ item.username }}"
+    password: "{{ item.password }}"
+    crypt_scheme: bcrypt
+    owner: alertmanager
+    group: alertmanager
+    mode: u=rw,g=r,o=
+    state: "{{ item.state | default('present') }}"
+  tags:
+    - alertmanager
+    - oauth2
+
+- name: Write default config
+  notify:
+    - Restart alertmanager-oauth2
+  template:
+    src: oauth2/default.j2
+    dest: /etc/default/alertmanager-oauth2
+  tags:
+    - alertmanager
+    - oauth2
+
+- name: Write service file
+  notify:
+    - Restart alertmanager-oauth2
+  template:
+    src: oauth2/service.j2
+    dest: /etc/systemd/system/alertmanager-oauth2.service
+  tags:
+    - alertmanager
+    - oauth2
+
+- name: Start alertmanager-oauth2 service
+  systemd:
+    name: alertmanager-oauth2
+    state: started
+    daemon_reload: True
+    masked: False
+    enabled: True
+  tags:
+    - alertmanager
+    - oauth2
+
+- name: Remove install directory
+  file:
+    path: "/usr/local/src/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-amd64"
+    state: absent
+  tags:
+    - alertmanager
+    - oauth2
+
+...
