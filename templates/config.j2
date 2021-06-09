@@ -10,20 +10,20 @@ route:
 {% if alertmanager_group_by | default(False) %}
 
   group_by:
-    {{ alertmanager_group_by | to_nice_yaml(indent=2) | indent(width=4, indentfirst=False) | trim }}
+    {{ alertmanager_group_by | to_nice_yaml(indent=2) | indent(width=4, first=False) | trim }}
 {% endif %}
 {% if alertmanager_routes | default(False) %}
 
   routes:
-    {{ alertmanager_routes | to_nice_yaml(indent=2) | indent(width=4, indentfirst=False) | trim }}
+    {{ alertmanager_routes | to_nice_yaml(indent=2) | indent(width=4, first=False) | trim }}
 {% endif %}
 {% if alertmanager_receivers | default(False) %}
 
 receivers:
-  {{ alertmanager_receivers | to_nice_yaml(indent=2) | indent(width=2, indentfirst=False) | trim }}
+  {{ alertmanager_receivers | to_nice_yaml(indent=2) | indent(width=2, first=False) | trim }}
 {% endif %}
 {% if alertmanager_inhibit_rules | default(False) %}
 
 inhibit_rules:
-  {{ alertmanager_inhibit_rules | to_nice_yaml(indent=2) | indent(width=2, indentfirst=False) | trim }}
+  {{ alertmanager_inhibit_rules | to_nice_yaml(indent=2) | indent(width=2, first=False) | trim }}
 {% endif %}
