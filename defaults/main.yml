@@ -1,6 +1,7 @@
 # Standards: 1.2
 ---
 # @var alertmanager_version:description: Version of the release to install
+# renovate: datasource=github-releases depName=prometheus/alertmanager
 alertmanager_version: 0.21.0
 
 # @var alertmanager_download:description: URL to the archive of the release to install
