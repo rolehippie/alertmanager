@@ -1,8 +1,12 @@
 global:
   smtp_from: "{{ alertmanager_smtp_from }}"
   smtp_smarthost: "{{ alertmanager_smtp_smarthost }}"
+{% if alertmanager_smtp_username | default(False) %}
   smtp_auth_username: "{{ alertmanager_smtp_username }}"
+{% endif %}
+{% if alertmanager_smtp_password | default(False) %}
   smtp_auth_password: "{{ alertmanager_smtp_password }}"
+{% endif %}
   smtp_require_tls: {{ alertmanager_smtp_require_tls | lower }}
 
 route:
