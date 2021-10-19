@@ -394,7 +394,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-alertmanager_version: 0.21.0
+alertmanager_version: 0.23.0
 ```
 
 ## Dependencies
