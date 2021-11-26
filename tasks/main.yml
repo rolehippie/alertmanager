@@ -28,6 +28,7 @@
     path: "{{ item }}"
     owner: alertmanager
     group: alertmanager
+    mode: u=rwx,g=rx,o=rx
     state: directory
   tags:
     - alertmanager
@@ -39,6 +40,7 @@
     path: "{{ item }}"
     owner: alertmanager
     group: alertmanager
+    mode: u=rwx,g=rx,o=rx
     state: directory
   tags:
     - alertmanager
@@ -96,6 +98,7 @@
     dest: /etc/alertmanager/config.yml
     owner: alertmanager
     group: alertmanager
+    mode: u=rw,g=r,o=r
   tags:
     - alertmanager
 
@@ -105,6 +108,9 @@
   template:
     src: default.j2
     dest: /etc/default/alertmanager
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - alertmanager
 
@@ -114,6 +120,9 @@
   template:
     src: service.j2
     dest: /etc/systemd/system/alertmanager.service
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - alertmanager
 
