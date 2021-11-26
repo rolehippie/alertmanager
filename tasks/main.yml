@@ -48,13 +48,13 @@
   failed_when: False
   changed_when: False
   check_mode: False
-  command: /usr/bin/alertmanager --version
+  shell: /usr/bin/alertmanager --version 2>&1
   tags:
     - alertmanager
 
 - name: Fact version change
   set_fact:
-    alertmanager_version_changed: "{{ alertmanager_version_check.rc != 0 or (alertmanager_version_check.stderr_lines is defined and alertmanager_version not in alertmanager_version_check.stderr_lines[0]) | bool }}"
+    alertmanager_version_changed: "{{ alertmanager_version_check.rc != 0 or (alertmanager_version_check.stdout_lines is defined and alertmanager_version not in alertmanager_version_check.stdout_lines[0]) | bool }}"
   tags:
     - alertmanager
 
