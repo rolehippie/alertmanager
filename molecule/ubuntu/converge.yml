@@ -2,6 +2,17 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    alertmanager_domain: http://localhost:9093
+    alertmanager_receiver: dummy
+    alertmanager_routes:
+      - receiver: dummy
+        match_re:
+          severity: critical
+    alertmanager_receivers:
+      - name: dummy
+        webhook_configs:
+          - url: https://webhook.site/e5389bea-9021-4a8d-8586-c4233e360776
   roles:
     - role: alertmanager
 
