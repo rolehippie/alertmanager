@@ -1,7 +1,7 @@
 ---
 name: galaxy
 
-on:
+'on':
   push:
     branches:
       - master
@@ -9,12 +9,12 @@ on:
       - v*
 
 jobs:
-  changes:
+  galaxy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@3
+        uses: actions/checkout@v3
 
       - name: Galaxy upload
         uses: robertdebock/galaxy-action@1.1.1
