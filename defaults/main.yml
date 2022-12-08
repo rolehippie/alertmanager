@@ -1,11 +1,68 @@
 # Standards: 1.2
 ---
+# @var alertmanager_installation:description: Select installation method, could be native or docker
+alertmanager_installation: native
+
 # @var alertmanager_version:description: Version of the release to install
 # renovate: datasource=github-releases depName=prometheus/alertmanager
 alertmanager_version: 0.24.0
 
 # @var alertmanager_download:description: URL to the archive of the release to install
 alertmanager_download: "https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz"
+
+# @var alertmanager_image:description: Docker image to use for deployment
+alertmanager_image: "quay.io/prometheus/alertmanager:v{{ alertmanager_version }}"
+
+# @var alertmanager_network:description: Optional docker network to attach
+alertmanager_network:
+
+# @var alertmanager_default_publish:description: List of default port publishing for docker
+# @var alertmanager_default_publish:example: >
+# alertmanager_default_publish:
+#   - 127.0.0.1:9093:9093
+# @end
+alertmanager_default_publish: []
+
+# @var alertmanager_extra_publish:description: List of extra port publishing for docker
+# @var alertmanager_extra_publish:example: >
+# alertmanager_extra_publish:
+#   - 127.0.0.1:9093:9093
+# @end
+alertmanager_extra_publish: []
+
+# @var alertmanager_default_labels:description: List of default labels to assign to docker
+alertmanager_default_labels: []
+
+# @var alertmanager_extra_labels:description: List of extra labels to assign to docker
+alertmanager_extra_labels: []
+
+# @var alertmanager_default_folders:description: List of default folders to create
+alertmanager_default_folders:
+  - /etc/alertmanager
+  - /var/lib/alertmanager
+
+# @var alertmanager_extra_folders:description: List of extra folders to create
+# @var alertmanager_extra_folders:example: >
+# alertmanager_extra_folders:
+#   - /path/to/host/folder1
+#   - /path/to/host/folder2
+#   - /path/to/host/folder3
+# @end
+alertmanager_extra_folders: []
+
+# @var alertmanager_default_volumes:description: List of default volumes to mount for docker
+alertmanager_default_volumes:
+  - /var/lib/alertmanager:/var/lib/alertmanager
+  - /etc/alertmanager:/etc/alertmanager
+
+# @var alertmanager_extra_volumes:description: List of extra volumes to mount for docker
+# @var alertmanager_extra_volumes:example: >
+# alertmanager_extra_volumes:
+#   - /path/to/host/folder1:/path/within/container1
+#   - /path/to/host/folder2:/path/within/container2
+#   - /path/to/host/folder3:/path/within/container3
+# @end
+alertmanager_extra_volumes: []
 
 # @var alertmanager_domain:description: Domain for external access
 # @var alertmanager_domain:example: $ "https://alertmanager.example.com"
@@ -86,8 +143,34 @@ alertmanager_oauth2_version: 7.4.0
 # @var alertmanager_oauth2_enabled:description: URL of the OAuth2 Proxy to download
 alertmanager_oauth2_download: "https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ alertmanager_oauth2_version }}/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-amd64.tar.gz"
 
+# @var alertmanager_oauth2_image:description: Docker image to use for deployment
+alertmanager_oauth2_image: "quay.io/oauth2-proxy/oauth2-proxy:v{{ alertmanager_oauth2_version }}"
+
+# @var alertmanager_oauth2_network:description: Optional docker network to attach on OAuth2 Proxy
+alertmanager_oauth2_network: "{{ alertmanager_network }}"
+
+# @var alertmanager_oauth2_default_publish:description: List of default port publishing for docker on OAuth2 Proxy
+# @var alertmanager_oauth2_default_publish:example: >
+# alertmanager_oauth2_default_publish:
+#   - 127.0.0.1:9092:9092
+# @end
+alertmanager_oauth2_default_publish: []
+
+# @var alertmanager_oauth2_extra_publish:description: List of extra port publishing for docker on OAuth2 Proxy
+# @var alertmanager_oauth2_extra_publish:example: >
+# alertmanager_oauth2_extra_publish:
+#   - 127.0.0.1:9092:9092
+# @end
+alertmanager_oauth2_extra_publish: []
+
+# @var alertmanager_oauth2_default_labels:description: List of default labels to assign to docker on OAuth2 Proxy
+alertmanager_oauth2_default_labels: []
+
+# @var alertmanager_oauth2_extra_labels:description: List of extra labels to assign to docker on OAuth2 Proxy
+alertmanager_oauth2_extra_labels: []
+
 # @var alertmanager_oauth2_upstream:description: Upstream target for the OAuth2 proxy
-alertmanager_oauth2_upstream: "http://{{ alertmanager_listen_address }}"
+alertmanager_oauth2_upstream: "http://{{ alertmanager_listen_address if alertmanager_installation == 'native' else 'alertmanager:9093' }}"
 
 # @var alertmanager_oauth2_listen_address:description: Listem address for the OAuth2 proxy
 alertmanager_oauth2_listen_address: 0.0.0.0:9092

@@ -1,11 +1,61 @@
 [Unit]
-Description=Alertmanager for Prometheus monitoring
+Description=Alertmanager
+{% if alertmanager_installation == 'docker' %}
+
+Wants=docker.service
+After=docker.service
+{% endif %}
 
 [Service]
 Restart=always
-User=alertmanager
+RestartSec=10s
+
+EnvironmentFile=/etc/environment
+{% if alertmanager_installation == 'docker' %}
+
+ExecStop=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker stop %p || true'
+ExecStartPre=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker kill %p || true'
+ExecStartPre=/bin/sh -c '/usr/bin/docker ps -a | /bin/grep %p 1> /dev/null && /usr/bin/docker rm %p || true'
+ExecStartPre=/usr/bin/docker pull {{ alertmanager_image }}
+ExecStart=/usr/bin/docker run --rm \
+  --name %p \
+  --hostname %p \
+  --env-file /etc/default/alertmanager \
+{% for item in alertmanager_default_labels + alertmanager_extra_labels %}
+  --label {{ item }} \
+{% endfor %}
+{% if alertmanager_network | default(False) %}
+  --network {{ alertmanager_network }} \
+{% endif %}
+  --volume /etc/alertmanager/config.yml:/etc/alertmanager/config.yml \
+{% for item in alertmanager_default_volumes + alertmanager_extra_volumes %}
+  --volume {{ item }} \
+{% endfor %}
+{% for item in alertmanager_default_publish + alertmanager_extra_publish %}
+  --publish {{ item }} \
+{% endfor %}
+  --health-cmd 'wget -q --spider http://localhost:9093/' \
+  --health-interval 30s \
+  --health-retries 5 \
+  --health-timeout 10s \
+  {{ alertmanager_image }} \
+  --config.file=/etc/alertmanager/config.yml \
+  --storage.path=/var/lib/alertmanager \
+  --web.external-url={{ alertmanager_domain }} \
+  --data.retention={{ alertmanager_data_retention }} \
+  --web.listen-address={{ alertmanager_listen_address }}
+{% else %}
 EnvironmentFile=/etc/default/alertmanager
+
+User=alertmanager
+Group=alertmanager
+
 ExecStart=/usr/bin/alertmanager $ARGS
+ExecReload=/bin/kill -HUP $MAINPID
+
+TimeoutStopSec=20s
+SendSIGKILL=no
+{% endif %}
 
 [Install]
 WantedBy=multi-user.target

@@ -1,6 +1,8 @@
 # Standards: 1.2
 ---
 - name: Create system group
+  when:
+    - alertmanager_installation == 'native'
   group:
     name: alertmanager
     system: True
@@ -9,6 +11,8 @@
     - alertmanager
 
 - name: Create system user
+  when:
+    - alertmanager_installation == 'native'
   user:
     name: alertmanager
     group: alertmanager
@@ -21,31 +25,20 @@
   tags:
     - alertmanager
 
-- name: Create config directories
-  loop:
-    - /etc/alertmanager
+- name: Create required directories
+  loop: "{{ alertmanager_default_folders + alertmanager_extra_folders }}"
   file:
     path: "{{ item }}"
-    owner: alertmanager
-    group: alertmanager
-    mode: u=rwx,g=rx,o=rx
-    state: directory
-  tags:
-    - alertmanager
-
-- name: Create state directories
-  loop:
-    - /var/lib/alertmanager
-  file:
-    path: "{{ item }}"
-    owner: alertmanager
-    group: alertmanager
+    owner: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nobody' }}"
+    group: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nogroup' }}"
     mode: u=rwx,g=rx,o=rx
     state: directory
   tags:
     - alertmanager
 
 - name: Check existing install
+  when:
+    - alertmanager_installation == 'native'
   register: alertmanager_version_check
   failed_when: False
   changed_when: False
@@ -55,13 +48,17 @@
     - alertmanager
 
 - name: Fact version change
+  when:
+    - alertmanager_installation == 'native'
   set_fact:
     alertmanager_version_changed: "{{ alertmanager_version_check.rc != 0 or (alertmanager_version_check.stdout_lines is defined and alertmanager_version not in alertmanager_version_check.stdout_lines[0]) | bool }}"
   tags:
     - alertmanager
 
 - name: Download release tarball
-  when: alertmanager_version_changed
+  when:
+    - alertmanager_installation == 'native'
+    - alertmanager_version_changed
   notify:
     - Restart alertmanager
   unarchive:
@@ -74,7 +71,10 @@
     - alertmanager
 
 - name: Copy downloaded binaries
-  when: alertmanager_version_changed and not ansible_check_mode
+  when:
+    - alertmanager_installation == 'native'
+    - alertmanager_version_changed
+    - not ansible_check_mode
   notify:
     - Restart alertmanager
   loop:
@@ -96,8 +96,8 @@
   template:
     src: config.j2
     dest: /etc/alertmanager/config.yml
-    owner: alertmanager
-    group: alertmanager
+    owner: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nobody' }}"
+    group: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nogroup' }}"
     mode: u=rw,g=r,o=r
   tags:
     - alertmanager
@@ -137,6 +137,8 @@
     - alertmanager
 
 - name: Remove install directory
+  when:
+    - alertmanager_installation == 'native'
   file:
     path: "/usr/local/src/alertmanager-{{ alertmanager_version }}.linux-amd64"
     state: absent

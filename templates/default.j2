@@ -1,1 +1,3 @@
+{% if alertmanager_installation == 'native' %}
 ARGS="--config.file=/etc/alertmanager/config.yml --storage.path=/var/lib/alertmanager --web.external-url={{ alertmanager_domain }} --data.retention={{ alertmanager_data_retention }} --web.listen-address={{ alertmanager_listen_address }}"
+{% endif %}
