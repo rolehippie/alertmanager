@@ -14,6 +14,6 @@
         webhook_configs:
           - url: https://webhook.site/e5389bea-9021-4a8d-8586-c4233e360776
   roles:
-    - role: alertmanager
+    - role: rolehippie.alertmanager
 
 ...
