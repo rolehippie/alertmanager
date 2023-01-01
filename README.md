@@ -632,7 +632,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-alertmanager_version: 0.24.0
+alertmanager_version: 0.25.0
 ```
 
 ## Discovered Tags
