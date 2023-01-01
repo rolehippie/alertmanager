@@ -12,19 +12,36 @@ Building and improving this Ansible role have been sponsored by my current and p
 
 - [Default Variables](#default-variables)
   - [alertmanager_data_retention](#alertmanager_data_retention)
+  - [alertmanager_default_folders](#alertmanager_default_folders)
+  - [alertmanager_default_labels](#alertmanager_default_labels)
+  - [alertmanager_default_publish](#alertmanager_default_publish)
+  - [alertmanager_default_volumes](#alertmanager_default_volumes)
   - [alertmanager_domain](#alertmanager_domain)
   - [alertmanager_download](#alertmanager_download)
+  - [alertmanager_extra_folders](#alertmanager_extra_folders)
+  - [alertmanager_extra_labels](#alertmanager_extra_labels)
+  - [alertmanager_extra_publish](#alertmanager_extra_publish)
+  - [alertmanager_extra_volumes](#alertmanager_extra_volumes)
   - [alertmanager_group_by](#alertmanager_group_by)
+  - [alertmanager_image](#alertmanager_image)
   - [alertmanager_inhibit_rules](#alertmanager_inhibit_rules)
+  - [alertmanager_installation](#alertmanager_installation)
   - [alertmanager_listen_address](#alertmanager_listen_address)
+  - [alertmanager_network](#alertmanager_network)
   - [alertmanager_oauth2_allowed_groups](#alertmanager_oauth2_allowed_groups)
   - [alertmanager_oauth2_client_id](#alertmanager_oauth2_client_id)
   - [alertmanager_oauth2_client_secret](#alertmanager_oauth2_client_secret)
   - [alertmanager_oauth2_cookie_secret](#alertmanager_oauth2_cookie_secret)
+  - [alertmanager_oauth2_default_labels](#alertmanager_oauth2_default_labels)
+  - [alertmanager_oauth2_default_publish](#alertmanager_oauth2_default_publish)
   - [alertmanager_oauth2_download](#alertmanager_oauth2_download)
   - [alertmanager_oauth2_enabled](#alertmanager_oauth2_enabled)
+  - [alertmanager_oauth2_extra_labels](#alertmanager_oauth2_extra_labels)
+  - [alertmanager_oauth2_extra_publish](#alertmanager_oauth2_extra_publish)
+  - [alertmanager_oauth2_image](#alertmanager_oauth2_image)
   - [alertmanager_oauth2_keycloak_url](#alertmanager_oauth2_keycloak_url)
   - [alertmanager_oauth2_listen_address](#alertmanager_oauth2_listen_address)
+  - [alertmanager_oauth2_network](#alertmanager_oauth2_network)
   - [alertmanager_oauth2_provider](#alertmanager_oauth2_provider)
   - [alertmanager_oauth2_static_groups](#alertmanager_oauth2_static_groups)
   - [alertmanager_oauth2_static_users](#alertmanager_oauth2_static_users)
@@ -58,6 +75,57 @@ Data retention for alertmanager state
 alertmanager_data_retention: 120h
 ```
 
+### alertmanager_default_folders
+
+List of default folders to create
+
+#### Default value
+
+```YAML
+alertmanager_default_folders:
+  - /etc/alertmanager
+  - /var/lib/alertmanager
+```
+
+### alertmanager_default_labels
+
+List of default labels to assign to docker
+
+#### Default value
+
+```YAML
+alertmanager_default_labels: []
+```
+
+### alertmanager_default_publish
+
+List of default port publishing for docker
+
+#### Default value
+
+```YAML
+alertmanager_default_publish: []
+```
+
+#### Example usage
+
+```YAML
+alertmanager_default_publish:
+  - 127.0.0.1:9093:9093
+```
+
+### alertmanager_default_volumes
+
+List of default volumes to mount for docker
+
+#### Default value
+
+```YAML
+alertmanager_default_volumes:
+  - /var/lib/alertmanager:/var/lib/alertmanager
+  - /etc/alertmanager:/etc/alertmanager
+```
+
 ### alertmanager_domain
 
 Domain for external access
@@ -85,6 +153,71 @@ alertmanager_download: https://github.com/prometheus/alertmanager/releases/downl
   alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz
 ```
 
+### alertmanager_extra_folders
+
+List of extra folders to create
+
+#### Default value
+
+```YAML
+alertmanager_extra_folders: []
+```
+
+#### Example usage
+
+```YAML
+alertmanager_extra_folders:
+  - /path/to/host/folder1
+  - /path/to/host/folder2
+  - /path/to/host/folder3
+```
+
+### alertmanager_extra_labels
+
+List of extra labels to assign to docker
+
+#### Default value
+
+```YAML
+alertmanager_extra_labels: []
+```
+
+### alertmanager_extra_publish
+
+List of extra port publishing for docker
+
+#### Default value
+
+```YAML
+alertmanager_extra_publish: []
+```
+
+#### Example usage
+
+```YAML
+alertmanager_extra_publish:
+  - 127.0.0.1:9093:9093
+```
+
+### alertmanager_extra_volumes
+
+List of extra volumes to mount for docker
+
+#### Default value
+
+```YAML
+alertmanager_extra_volumes: []
+```
+
+#### Example usage
+
+```YAML
+alertmanager_extra_volumes:
+  - /path/to/host/folder1:/path/within/container1
+  - /path/to/host/folder2:/path/within/container2
+  - /path/to/host/folder3:/path/within/container3
+```
+
 ### alertmanager_group_by
 
 List of alerting groups
@@ -101,6 +234,16 @@ alertmanager_group_by: []
 alertmanager_group_by:
   - alertname
   - app
+```
+
+### alertmanager_image
+
+Docker image to use for deployment
+
+#### Default value
+
+```YAML
+alertmanager_image: quay.io/prometheus/alertmanager:v{{ alertmanager_version }}
 ```
 
 ### alertmanager_inhibit_rules
@@ -127,6 +270,16 @@ alertmanager_inhibit_rules:
       - instance
 ```
 
+### alertmanager_installation
+
+Select installation method, could be native or docker
+
+#### Default value
+
+```YAML
+alertmanager_installation: native
+```
+
 ### alertmanager_listen_address
 
 Listen address for the alertmanager
@@ -135,6 +288,16 @@ Listen address for the alertmanager
 
 ```YAML
 alertmanager_listen_address: 0.0.0.0:9093
+```
+
+### alertmanager_network
+
+Optional docker network to attach
+
+#### Default value
+
+```YAML
+alertmanager_network:
 ```
 
 ### alertmanager_oauth2_allowed_groups
@@ -186,6 +349,33 @@ Cookie secret used by OAuth2 proxy
 alertmanager_oauth2_cookie_secret:
 ```
 
+### alertmanager_oauth2_default_labels
+
+List of default labels to assign to docker on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_default_labels: []
+```
+
+### alertmanager_oauth2_default_publish
+
+List of default port publishing for docker on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_default_publish: []
+```
+
+#### Example usage
+
+```YAML
+alertmanager_oauth2_default_publish:
+  - 127.0.0.1:9092:9092
+```
+
 ### alertmanager_oauth2_download
 
 #### Default value
@@ -203,6 +393,44 @@ URL of the OAuth2 Proxy to download
 
 ```YAML
 alertmanager_oauth2_enabled: false
+```
+
+### alertmanager_oauth2_extra_labels
+
+List of extra labels to assign to docker on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_extra_labels: []
+```
+
+### alertmanager_oauth2_extra_publish
+
+List of extra port publishing for docker on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_extra_publish: []
+```
+
+#### Example usage
+
+```YAML
+alertmanager_oauth2_extra_publish:
+  - 127.0.0.1:9092:9092
+```
+
+### alertmanager_oauth2_image
+
+Docker image to use for deployment
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_image: quay.io/oauth2-proxy/oauth2-proxy:v{{ alertmanager_oauth2_version
+  }}
 ```
 
 ### alertmanager_oauth2_keycloak_url
@@ -223,6 +451,16 @@ Listem address for the OAuth2 proxy
 
 ```YAML
 alertmanager_oauth2_listen_address: 0.0.0.0:9092
+```
+
+### alertmanager_oauth2_network
+
+Optional docker network to attach on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_network: '{{ alertmanager_network }}'
 ```
 
 ### alertmanager_oauth2_provider
@@ -274,7 +512,8 @@ Upstream target for the OAuth2 proxy
 #### Default value
 
 ```YAML
-alertmanager_oauth2_upstream: http://{{ alertmanager_listen_address }}
+alertmanager_oauth2_upstream: http://{{ alertmanager_listen_address if alertmanager_installation
+  == 'native' else 'alertmanager:9093' }}
 ```
 
 ### alertmanager_oauth2_version
