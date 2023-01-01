@@ -1,0 +1,19 @@
+---
+name: release
+
+"on":
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Release please
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: simple
+
+...
