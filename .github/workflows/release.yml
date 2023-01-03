@@ -5,6 +5,7 @@ name: release
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   release:
