@@ -13,6 +13,9 @@ alertmanager_download: "https://github.com/prometheus/alertmanager/releases/down
 # @var alertmanager_image:description: Docker image to use for deployment
 alertmanager_image: "quay.io/prometheus/alertmanager:v{{ alertmanager_version }}"
 
+# @var alertmanager_pull_image:description: Pull image as part of the tasks
+alertmanager_pull_image: True
+
 # @var alertmanager_network:description: Optional docker network to attach
 alertmanager_network:
 
@@ -145,6 +148,9 @@ alertmanager_oauth2_download: "https://github.com/oauth2-proxy/oauth2-proxy/rele
 
 # @var alertmanager_oauth2_image:description: Docker image to use for deployment
 alertmanager_oauth2_image: "quay.io/oauth2-proxy/oauth2-proxy:v{{ alertmanager_oauth2_version }}"
+
+# @var alertmanager_oauth2_pull_image:description: Pull OAuth2 Proxy image as part of the tasks
+alertmanager_oauth2_pull_image: "{{ alertmanager_pull_image }}"
 
 # @var alertmanager_oauth2_network:description: Optional docker network to attach on OAuth2 Proxy
 alertmanager_oauth2_network: "{{ alertmanager_network }}"

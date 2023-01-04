@@ -111,6 +111,16 @@
     - alertmanager
     - oauth2
 
+- name: Pull docker image
+  when:
+    - alertmanager_installation == 'docker'
+    - alertmanager_oauth2_pull_image
+  docker_image:
+    name: "{{ alertmanager_oauth2_image }}"
+    source: pull
+  tags:
+    - alertmanager
+
 - name: Start alertmanager-oauth2 service
   systemd:
     name: alertmanager-oauth2

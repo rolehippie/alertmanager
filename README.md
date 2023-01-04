@@ -43,10 +43,12 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [alertmanager_oauth2_listen_address](#alertmanager_oauth2_listen_address)
   - [alertmanager_oauth2_network](#alertmanager_oauth2_network)
   - [alertmanager_oauth2_provider](#alertmanager_oauth2_provider)
+  - [alertmanager_oauth2_pull_image](#alertmanager_oauth2_pull_image)
   - [alertmanager_oauth2_static_groups](#alertmanager_oauth2_static_groups)
   - [alertmanager_oauth2_static_users](#alertmanager_oauth2_static_users)
   - [alertmanager_oauth2_upstream](#alertmanager_oauth2_upstream)
   - [alertmanager_oauth2_version](#alertmanager_oauth2_version)
+  - [alertmanager_pull_image](#alertmanager_pull_image)
   - [alertmanager_receiver](#alertmanager_receiver)
   - [alertmanager_receivers](#alertmanager_receivers)
   - [alertmanager_routes](#alertmanager_routes)
@@ -473,6 +475,16 @@ Provider for OAuth2 authentication
 alertmanager_oauth2_provider: keycloak
 ```
 
+### alertmanager_oauth2_pull_image
+
+Pull OAuth2 Proxy image as part of the tasks
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_pull_image: '{{ alertmanager_pull_image }}'
+```
+
 ### alertmanager_oauth2_static_groups
 
 List of groups assigned to static users
@@ -524,6 +536,16 @@ Version of the OAuth2 Proxy to download
 
 ```YAML
 alertmanager_oauth2_version: 7.4.0
+```
+
+### alertmanager_pull_image
+
+Pull image as part of the tasks
+
+#### Default value
+
+```YAML
+alertmanager_pull_image: true
 ```
 
 ### alertmanager_receiver

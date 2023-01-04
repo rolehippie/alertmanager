@@ -126,6 +126,16 @@
   tags:
     - alertmanager
 
+- name: Pull docker image
+  when:
+    - alertmanager_installation == 'docker'
+    - alertmanager_pull_image
+  docker_image:
+    name: "{{ alertmanager_image }}"
+    source: pull
+  tags:
+    - alertmanager
+
 - name: Start alertmanager service
   systemd:
     name: alertmanager
