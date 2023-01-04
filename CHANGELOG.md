@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/rolehippie/alertmanager/compare/v1.0.0...v1.1.0) (2023-01-04)
+
+
+### Features
+
+* pull docker image as part of playbook, not service ([a8071ea](https://github.com/rolehippie/alertmanager/commit/a8071ea33de311cf79761c4bbd18bde4ec513df3))
+
 ## 1.0.0 (2023-01-03)
 
 ### Features
