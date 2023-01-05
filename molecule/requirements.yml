@@ -2,6 +2,6 @@
 ---
 collections: []
 roles:
-  - rolehippie.docker
+  - name: rolehippie.docker
 
 ...
