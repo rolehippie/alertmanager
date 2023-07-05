@@ -90,6 +90,67 @@
   tags:
     - alertmanager
 
+- name: Templates from url
+  notify:
+    - Restart alertmanager
+  loop: "{{ alertmanager_default_templates + alertmanager_extra_templates }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.url | default(False) and item.state | default("present") == "present"
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
+    owner: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nobody' }}"
+    group: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nogroup' }}"
+    mode: o=rw,g=r,o=r
+  tags:
+    - alertmanager
+
+- name: Templates from content
+  notify:
+    - Restart alertmanager
+  loop: "{{ alertmanager_default_templates + alertmanager_extra_templates }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.content | default(False) and item.state | default("present") == "present"
+  copy:
+    content: "{{ item.content }}"
+    dest: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
+    owner: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nobody' }}"
+    group: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nogroup' }}"
+    mode: o=rw,g=r,o=r
+  tags:
+    - alertmanager
+
+- name: Templates from file
+  notify:
+    - Restart alertmanager
+  loop: "{{ alertmanager_default_templates + alertmanager_extra_templates }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.src | default(False) and item.state | default("present") == "present"
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
+    owner: alertmanager
+    group: alertmanager
+    mode: o=rw,g=r,o=r
+  tags:
+    - alertmanager
+
+- name: Delete defined Templates
+  notify:
+    - Restart alertmanager
+  loop: "{{ alertmanager_default_templates + alertmanager_extra_templates }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.state | default("present") == "absent"
+  file:
+    path: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
+    state: absent
+  tags:
+    - alertmanager
+
 - name: Write general config
   notify:
     - Restart alertmanager

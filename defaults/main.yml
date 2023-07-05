@@ -42,6 +42,7 @@ alertmanager_extra_labels: []
 # @var alertmanager_default_folders:description: List of default folders to create
 alertmanager_default_folders:
   - /etc/alertmanager
+  - /etc/alertmanager/templates
   - /var/lib/alertmanager
 
 # @var alertmanager_extra_folders:description: List of extra folders to create
@@ -66,6 +67,16 @@ alertmanager_default_volumes:
 #   - /path/to/host/folder3:/path/within/container3
 # @end
 alertmanager_extra_volumes: []
+
+# @var alertmanager_default_templates:description: List of default template file definition
+alertmanager_default_templates: []
+
+# @var alertmanager_extra_templates:description: List of extra template file definition
+alertmanager_extra_templates: []
+
+# @var alertmanager_template_paths:description: List of template paths for alertmanager
+alertmanager_template_paths:
+  - /etc/alertmanager/templates/*.tmpl
 
 # @var alertmanager_domain:description: Domain for external access
 # @var alertmanager_domain:example: $ "https://alertmanager.example.com"
