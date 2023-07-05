@@ -7,13 +7,6 @@
 
 * add templates to alertmanager ([6f21e1a](https://github.com/rolehippie/alertmanager/commit/6f21e1a5fa5999e738ac8914aedf016d43dbf447))
 
-## [1.2.0](https://github.com/rolehippie/alertmanager/compare/v1.1.0...v1.2.0) (2023-07-05)
-
-
-### Features
-
-* add templates to alertmanager ([6f21e1a](https://github.com/rolehippie/alertmanager/commit/6f21e1a5fa5999e738ac8914aedf016d43dbf447))
-
 ## [1.1.0](https://github.com/rolehippie/alertmanager/compare/v1.0.0...v1.1.0) (2023-01-04)
 
 
