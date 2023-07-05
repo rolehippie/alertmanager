@@ -21,12 +21,14 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [alertmanager_default_folders](#alertmanager_default_folders)
   - [alertmanager_default_labels](#alertmanager_default_labels)
   - [alertmanager_default_publish](#alertmanager_default_publish)
+  - [alertmanager_default_templates](#alertmanager_default_templates)
   - [alertmanager_default_volumes](#alertmanager_default_volumes)
   - [alertmanager_domain](#alertmanager_domain)
   - [alertmanager_download](#alertmanager_download)
   - [alertmanager_extra_folders](#alertmanager_extra_folders)
   - [alertmanager_extra_labels](#alertmanager_extra_labels)
   - [alertmanager_extra_publish](#alertmanager_extra_publish)
+  - [alertmanager_extra_templates](#alertmanager_extra_templates)
   - [alertmanager_extra_volumes](#alertmanager_extra_volumes)
   - [alertmanager_group_by](#alertmanager_group_by)
   - [alertmanager_image](#alertmanager_image)
@@ -63,6 +65,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [alertmanager_smtp_require_tls](#alertmanager_smtp_require_tls)
   - [alertmanager_smtp_smarthost](#alertmanager_smtp_smarthost)
   - [alertmanager_smtp_username](#alertmanager_smtp_username)
+  - [alertmanager_template_paths](#alertmanager_template_paths)
   - [alertmanager_version](#alertmanager_version)
 - [Discovered Tags](#discovered-tags)
 - [Dependencies](#dependencies)
@@ -97,6 +100,7 @@ List of default folders to create
 ```YAML
 alertmanager_default_folders:
   - /etc/alertmanager
+  - /etc/alertmanager/templates
   - /var/lib/alertmanager
 ```
 
@@ -125,6 +129,16 @@ alertmanager_default_publish: []
 ```YAML
 alertmanager_default_publish:
   - 127.0.0.1:9093:9093
+```
+
+### alertmanager_default_templates
+
+List of default template file definition
+
+#### Default value
+
+```YAML
+alertmanager_default_templates: []
 ```
 
 ### alertmanager_default_volumes
@@ -210,6 +224,16 @@ alertmanager_extra_publish: []
 ```YAML
 alertmanager_extra_publish:
   - 127.0.0.1:9093:9093
+```
+
+### alertmanager_extra_templates
+
+List of extra template file definition
+
+#### Default value
+
+```YAML
+alertmanager_extra_templates: []
 ```
 
 ### alertmanager_extra_volumes
@@ -656,6 +680,17 @@ Username for SMTP connection
 
 ```YAML
 alertmanager_smtp_username:
+```
+
+### alertmanager_template_paths
+
+List of template paths for alertmanager
+
+#### Default value
+
+```YAML
+alertmanager_template_paths:
+  - /etc/alertmanager/templates/*.tmpl
 ```
 
 ### alertmanager_version
