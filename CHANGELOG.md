@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/rolehippie/alertmanager/compare/v1.2.0...v1.3.0) (2023-07-06)
+
+
+### Features
+
+* add options to disable access and auth logging for oauth2 proxy ([13477a5](https://github.com/rolehippie/alertmanager/commit/13477a50b6e6092e1b9ebda4a02bfdf9f151b5a2))
+
 ## [1.2.0](https://github.com/rolehippie/alertmanager/compare/v1.1.0...v1.2.0) (2023-07-05)
 
 
