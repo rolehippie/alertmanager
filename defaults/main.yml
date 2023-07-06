@@ -192,6 +192,12 @@ alertmanager_oauth2_upstream: "http://{{ alertmanager_listen_address if alertman
 # @var alertmanager_oauth2_listen_address:description: Listem address for the OAuth2 proxy
 alertmanager_oauth2_listen_address: 0.0.0.0:9092
 
+# @var alertmanager_oauth2_request_logging:description: Enable request logging for OAuth2 proxy
+alertmanager_oauth2_request_logging: False
+
+# @var alertmanager_oauth2_access_logging:description: Enable access logging for OAuth2 proxy
+alertmanager_oauth2_access_logging: False
+
 # @var alertmanager_oauth2_cookie_secret:description: Cookie secret used by OAuth2 proxy
 alertmanager_oauth2_cookie_secret:
 

@@ -36,6 +36,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [alertmanager_installation](#alertmanager_installation)
   - [alertmanager_listen_address](#alertmanager_listen_address)
   - [alertmanager_network](#alertmanager_network)
+  - [alertmanager_oauth2_access_logging](#alertmanager_oauth2_access_logging)
   - [alertmanager_oauth2_allowed_groups](#alertmanager_oauth2_allowed_groups)
   - [alertmanager_oauth2_client_id](#alertmanager_oauth2_client_id)
   - [alertmanager_oauth2_client_secret](#alertmanager_oauth2_client_secret)
@@ -52,6 +53,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [alertmanager_oauth2_network](#alertmanager_oauth2_network)
   - [alertmanager_oauth2_provider](#alertmanager_oauth2_provider)
   - [alertmanager_oauth2_pull_image](#alertmanager_oauth2_pull_image)
+  - [alertmanager_oauth2_request_logging](#alertmanager_oauth2_request_logging)
   - [alertmanager_oauth2_static_groups](#alertmanager_oauth2_static_groups)
   - [alertmanager_oauth2_static_users](#alertmanager_oauth2_static_users)
   - [alertmanager_oauth2_upstream](#alertmanager_oauth2_upstream)
@@ -337,6 +339,16 @@ Optional docker network to attach
 alertmanager_network:
 ```
 
+### alertmanager_oauth2_access_logging
+
+Enable access logging for OAuth2 proxy
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_access_logging: false
+```
+
 ### alertmanager_oauth2_allowed_groups
 
 List of groups to allow access
@@ -518,6 +530,16 @@ Pull OAuth2 Proxy image as part of the tasks
 
 ```YAML
 alertmanager_oauth2_pull_image: '{{ alertmanager_pull_image }}'
+```
+
+### alertmanager_oauth2_request_logging
+
+Enable request logging for OAuth2 proxy
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_request_logging: false
 ```
 
 ### alertmanager_oauth2_static_groups
