@@ -138,7 +138,7 @@
   tags:
     - alertmanager
 
-- name: Delete defined Templates
+- name: Delete defined templates
   notify:
     - Restart alertmanager
   loop: "{{ alertmanager_default_templates + alertmanager_extra_templates }}"
