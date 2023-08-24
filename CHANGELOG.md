@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/rolehippie/alertmanager/compare/v1.3.0...v1.4.0) (2023-08-24)
+
+
+### Features
+
+* add optional defaults for cpu and memory limit ([4ee11f6](https://github.com/rolehippie/alertmanager/commit/4ee11f650f85743fde3ff206ffc2eb52d01c3987))
+
 ## [1.3.0](https://github.com/rolehippie/alertmanager/compare/v1.2.0...v1.3.0) (2023-07-06)
 
 
