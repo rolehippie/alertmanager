@@ -20,6 +20,21 @@ ExecStart=/usr/bin/docker run --rm \
   --name %p \
   --hostname %p \
   --env-file /etc/default/alertmanager \
+{% if alertmanager_memory_limit | default(False) %}
+  --memory {{ alertmanager_memory_limit }} \
+{% endif %}
+{% if alertmanager_memory_swap | default(False) %}
+  --memory-swap {{ alertmanager_memory_swap }} \
+{% endif %}
+{% if alertmanager_memory_soft_limit | default(False) %}
+  --memory-reservation {{ alertmanager_memory_soft_limit }} \
+{% endif %}
+{% if alertmanager_cpu_shares | default(False) %}
+  --cpu-shares {{ alertmanager_cpu_shares }} \
+{% endif %}
+{% if alertmanager_number_of_cpus | default(False) %}
+  --cpus {{ alertmanager_number_of_cpus }} \
+{% endif %}
 {% for item in alertmanager_default_labels + alertmanager_extra_labels %}
   --label {{ item }} \
 {% endfor %}

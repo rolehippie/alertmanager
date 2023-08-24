@@ -68,6 +68,26 @@ alertmanager_default_volumes:
 # @end
 alertmanager_extra_volumes: []
 
+# @var alertmanager_memory_limit:description: Memory limit with Docker deployment
+# @var alertmanager_memory_limit:example: $ "1024m"
+alertmanager_memory_limit:
+
+# @var alertmanager_memory_swap:description: Swap usage with Docker deployment
+# @var alertmanager_memory_swap:example: $ "2048m"
+alertmanager_memory_swap:
+
+# @var alertmanager_memory_soft_limit:description: Soft memory limit with Docker deployment
+# @var alertmanager_memory_soft_limit:example: $ "512m"
+alertmanager_memory_soft_limit:
+
+# @var alertmanager_cpu_shares:description: CPU shares with Docker deployment
+# @var alertmanager_cpu_shares:example: $ "512"
+alertmanager_cpu_shares:
+
+# @var alertmanager_number_of_cpus:description: Number of CPUs with Docker deployment
+# @var alertmanager_number_of_cpus:example: $ "1.0"
+alertmanager_number_of_cpus:
+
 # @var alertmanager_default_templates:description: List of default template file definition
 alertmanager_default_templates: []
 
@@ -185,6 +205,26 @@ alertmanager_oauth2_default_labels: []
 
 # @var alertmanager_oauth2_extra_labels:description: List of extra labels to assign to docker on OAuth2 Proxy
 alertmanager_oauth2_extra_labels: []
+
+# @var alertmanager_oauth2_memory_limit:description: Memory limit with Docker deployment
+# @var alertmanager_oauth2_memory_limit:example: $ "1024m"
+alertmanager_oauth2_memory_limit:
+
+# @var alertmanager_oauth2_memory_swap:description: Swap usage with Docker deployment
+# @var alertmanager_oauth2_memory_swap:example: $ "2048m"
+alertmanager_oauth2_memory_swap:
+
+# @var alertmanager_oauth2_memory_soft_limit:description: Soft memory limit with Docker deployment
+# @var alertmanager_oauth2_memory_soft_limit:example: $ "512m"
+alertmanager_oauth2_memory_soft_limit:
+
+# @var alertmanager_oauth2_cpu_shares:description: CPU shares with Docker deployment
+# @var alertmanager_oauth2_cpu_shares:example: $ "512"
+alertmanager_oauth2_cpu_shares:
+
+# @var alertmanager_oauth2_number_of_cpus:description: Number of CPUs with Docker deployment
+# @var alertmanager_oauth2_number_of_cpus:example: $ "1.0"
+alertmanager_oauth2_number_of_cpus:
 
 # @var alertmanager_oauth2_upstream:description: Upstream target for the OAuth2 proxy
 alertmanager_oauth2_upstream: "http://{{ alertmanager_listen_address if alertmanager_installation == 'native' else 'alertmanager:9093' }}"

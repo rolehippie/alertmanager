@@ -17,6 +17,7 @@ Building and improving this Ansible role have been sponsored by my current and p
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
+  - [alertmanager_cpu_shares](#alertmanager_cpu_shares)
   - [alertmanager_data_retention](#alertmanager_data_retention)
   - [alertmanager_default_folders](#alertmanager_default_folders)
   - [alertmanager_default_labels](#alertmanager_default_labels)
@@ -35,12 +36,17 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [alertmanager_inhibit_rules](#alertmanager_inhibit_rules)
   - [alertmanager_installation](#alertmanager_installation)
   - [alertmanager_listen_address](#alertmanager_listen_address)
+  - [alertmanager_memory_limit](#alertmanager_memory_limit)
+  - [alertmanager_memory_soft_limit](#alertmanager_memory_soft_limit)
+  - [alertmanager_memory_swap](#alertmanager_memory_swap)
   - [alertmanager_network](#alertmanager_network)
+  - [alertmanager_number_of_cpus](#alertmanager_number_of_cpus)
   - [alertmanager_oauth2_access_logging](#alertmanager_oauth2_access_logging)
   - [alertmanager_oauth2_allowed_groups](#alertmanager_oauth2_allowed_groups)
   - [alertmanager_oauth2_client_id](#alertmanager_oauth2_client_id)
   - [alertmanager_oauth2_client_secret](#alertmanager_oauth2_client_secret)
   - [alertmanager_oauth2_cookie_secret](#alertmanager_oauth2_cookie_secret)
+  - [alertmanager_oauth2_cpu_shares](#alertmanager_oauth2_cpu_shares)
   - [alertmanager_oauth2_default_labels](#alertmanager_oauth2_default_labels)
   - [alertmanager_oauth2_default_publish](#alertmanager_oauth2_default_publish)
   - [alertmanager_oauth2_download](#alertmanager_oauth2_download)
@@ -50,7 +56,11 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [alertmanager_oauth2_image](#alertmanager_oauth2_image)
   - [alertmanager_oauth2_keycloak_url](#alertmanager_oauth2_keycloak_url)
   - [alertmanager_oauth2_listen_address](#alertmanager_oauth2_listen_address)
+  - [alertmanager_oauth2_memory_limit](#alertmanager_oauth2_memory_limit)
+  - [alertmanager_oauth2_memory_soft_limit](#alertmanager_oauth2_memory_soft_limit)
+  - [alertmanager_oauth2_memory_swap](#alertmanager_oauth2_memory_swap)
   - [alertmanager_oauth2_network](#alertmanager_oauth2_network)
+  - [alertmanager_oauth2_number_of_cpus](#alertmanager_oauth2_number_of_cpus)
   - [alertmanager_oauth2_provider](#alertmanager_oauth2_provider)
   - [alertmanager_oauth2_pull_image](#alertmanager_oauth2_pull_image)
   - [alertmanager_oauth2_request_logging](#alertmanager_oauth2_request_logging)
@@ -82,6 +92,22 @@ Building and improving this Ansible role have been sponsored by my current and p
 
 
 ## Default Variables
+
+### alertmanager_cpu_shares
+
+CPU shares with Docker deployment
+
+#### Default value
+
+```YAML
+alertmanager_cpu_shares:
+```
+
+#### Example usage
+
+```YAML
+alertmanager_cpu_shares: '512'
+```
 
 ### alertmanager_data_retention
 
@@ -329,6 +355,54 @@ Listen address for the alertmanager
 alertmanager_listen_address: 0.0.0.0:9093
 ```
 
+### alertmanager_memory_limit
+
+Memory limit with Docker deployment
+
+#### Default value
+
+```YAML
+alertmanager_memory_limit:
+```
+
+#### Example usage
+
+```YAML
+alertmanager_memory_limit: 1024m
+```
+
+### alertmanager_memory_soft_limit
+
+Soft memory limit with Docker deployment
+
+#### Default value
+
+```YAML
+alertmanager_memory_soft_limit:
+```
+
+#### Example usage
+
+```YAML
+alertmanager_memory_soft_limit: 512m
+```
+
+### alertmanager_memory_swap
+
+Swap usage with Docker deployment
+
+#### Default value
+
+```YAML
+alertmanager_memory_swap:
+```
+
+#### Example usage
+
+```YAML
+alertmanager_memory_swap: 2048m
+```
+
 ### alertmanager_network
 
 Optional docker network to attach
@@ -337,6 +411,22 @@ Optional docker network to attach
 
 ```YAML
 alertmanager_network:
+```
+
+### alertmanager_number_of_cpus
+
+Number of CPUs with Docker deployment
+
+#### Default value
+
+```YAML
+alertmanager_number_of_cpus:
+```
+
+#### Example usage
+
+```YAML
+alertmanager_number_of_cpus: '1.0'
 ```
 
 ### alertmanager_oauth2_access_logging
@@ -396,6 +486,22 @@ Cookie secret used by OAuth2 proxy
 
 ```YAML
 alertmanager_oauth2_cookie_secret:
+```
+
+### alertmanager_oauth2_cpu_shares
+
+CPU shares with Docker deployment
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_cpu_shares:
+```
+
+#### Example usage
+
+```YAML
+alertmanager_oauth2_cpu_shares: '512'
 ```
 
 ### alertmanager_oauth2_default_labels
@@ -502,6 +608,54 @@ Listem address for the OAuth2 proxy
 alertmanager_oauth2_listen_address: 0.0.0.0:9092
 ```
 
+### alertmanager_oauth2_memory_limit
+
+Memory limit with Docker deployment
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_memory_limit:
+```
+
+#### Example usage
+
+```YAML
+alertmanager_oauth2_memory_limit: 1024m
+```
+
+### alertmanager_oauth2_memory_soft_limit
+
+Soft memory limit with Docker deployment
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_memory_soft_limit:
+```
+
+#### Example usage
+
+```YAML
+alertmanager_oauth2_memory_soft_limit: 512m
+```
+
+### alertmanager_oauth2_memory_swap
+
+Swap usage with Docker deployment
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_memory_swap:
+```
+
+#### Example usage
+
+```YAML
+alertmanager_oauth2_memory_swap: 2048m
+```
+
 ### alertmanager_oauth2_network
 
 Optional docker network to attach on OAuth2 Proxy
@@ -510,6 +664,22 @@ Optional docker network to attach on OAuth2 Proxy
 
 ```YAML
 alertmanager_oauth2_network: '{{ alertmanager_network }}'
+```
+
+### alertmanager_oauth2_number_of_cpus
+
+Number of CPUs with Docker deployment
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_number_of_cpus:
+```
+
+#### Example usage
+
+```YAML
+alertmanager_oauth2_number_of_cpus: '1.0'
 ```
 
 ### alertmanager_oauth2_provider
