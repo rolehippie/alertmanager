@@ -1,6 +1,6 @@
 # alertmanager
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&amp;logoColor=white)](https://github.com/rolehippie/alertmanager)
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/alertmanager)
 [![General Workflow](https://github.com/rolehippie/alertmanager/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/alertmanager/actions/workflows/general.yml)
 [![Readme Workflow](https://github.com/rolehippie/alertmanager/actions/workflows/docs.yml/badge.svg)](https://github.com/rolehippie/alertmanager/actions/workflows/docs.yml)
 [![Galaxy Workflow](https://github.com/rolehippie/alertmanager/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/alertmanager/actions/workflows/galaxy.yml)
@@ -89,7 +89,6 @@ Building and improving this Ansible role have been sponsored by my current and p
 ## Requirements
 
 - Minimum Ansible version: `2.10`
-
 
 ## Default Variables
 
