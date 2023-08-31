@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/rolehippie/alertmanager/compare/v1.4.0...v1.5.0) (2023-08-31)
+
+
+### Features
+
+* **deps:** update dependency prometheus/alertmanager to v0.26.0 ([d1d1b11](https://github.com/rolehippie/alertmanager/commit/d1d1b11ddbe1551dc506d76e7d46887957406241))
+
 ## [1.4.0](https://github.com/rolehippie/alertmanager/compare/v1.3.0...v1.4.0) (2023-08-24)
 
 
