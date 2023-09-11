@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/rolehippie/alertmanager/compare/v1.5.0...v1.6.0) (2023-09-11)
+
+
+### Features
+
+* **deps:** update dependency oauth2-proxy/oauth2-proxy to v7.5.0 ([12e575e](https://github.com/rolehippie/alertmanager/commit/12e575e68a2f796a8eda2ee0b247a324eabe187d))
+
 ## [1.5.0](https://github.com/rolehippie/alertmanager/compare/v1.4.0...v1.5.0) (2023-08-31)
 
 
