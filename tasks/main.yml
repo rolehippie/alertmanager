@@ -16,7 +16,7 @@
     name: alertmanager
     group: alertmanager
     password: "!"
-    ansible.builtin.shell: /usr/sbin/nologin
+    shell: /usr/sbin/nologin
     home: /var/lib/alertmanager
     create_home: False
     system: True
