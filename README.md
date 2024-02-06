@@ -904,6 +904,8 @@ alertmanager_version: 0.26.0
 ## Dependencies
 
 - [rolehippie.docker](https://github.com/rolehippie/docker)
+- [community.docker](https://github.com/ansible-collections/community.docker)
+- [community.general](https://github.com/ansible-collections/community.general)
 
 ## License
 
