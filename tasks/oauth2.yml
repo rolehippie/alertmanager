@@ -1,11 +1,10 @@
-# Standards: 1.2
 ---
 - name: Install required packages
   when: alertmanager_oauth2_static_users | default(False)
   loop:
     - python3-passlib
     - python3-bcrypt
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
   tags:
@@ -19,7 +18,7 @@
   failed_when: False
   changed_when: False
   check_mode: False
-  shell: /usr/bin/alertmanager-oauth2 --version 2>&1
+  ansible.builtin.shell: /usr/bin/alertmanager-oauth2 --version 2>&1
   tags:
     - alertmanager
     - oauth2
@@ -27,7 +26,7 @@
 - name: Fact version change
   when:
     - alertmanager_installation == 'native'
-  set_fact:
+  ansible.builtin.set_fact:
     alertmanager_oauth2_version_changed: "{{ alertmanager_oauth2_version_check.rc != 0 or (alertmanager_oauth2_version_check.stdout_lines is defined and alertmanager_oauth2_version not in alertmanager_oauth2_version_check.stdout_lines[0]) | bool }}"
   tags:
     - alertmanager
@@ -37,7 +36,7 @@
   when:
     - alertmanager_installation == 'native'
     - alertmanager_oauth2_version_changed
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ alertmanager_oauth2_download }}"
     dest: /usr/local/src
     remote_src: True
@@ -54,7 +53,7 @@
     - not ansible_check_mode
   notify:
     - Restart alertmanager-oauth2
-  copy:
+  ansible.builtin.copy:
     src: "/usr/local/src/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-amd64/oauth2-proxy"
     dest: /usr/bin/alertmanager-oauth2
     remote_src: True
@@ -72,7 +71,7 @@
     label: "{{ item.username }}"
   notify:
     - Restart alertmanager-oauth2
-  htpasswd:
+  community.general.htpasswd:
     path: /etc/alertmanager/htpasswd
     name: "{{ item.username }}"
     password: "{{ item.password }}"
@@ -88,7 +87,7 @@
 - name: Write default config
   notify:
     - Restart alertmanager-oauth2
-  template:
+  ansible.builtin.template:
     src: oauth2/default.j2
     dest: /etc/default/alertmanager-oauth2
     owner: root
@@ -101,7 +100,7 @@
 - name: Write service file
   notify:
     - Restart alertmanager-oauth2
-  template:
+  ansible.builtin.template:
     src: oauth2/service.j2
     dest: /etc/systemd/system/alertmanager-oauth2.service
     owner: root
@@ -115,14 +114,14 @@
   when:
     - alertmanager_installation == 'docker'
     - alertmanager_oauth2_pull_image
-  docker_image:
+  community.docker.docker_image:
     name: "{{ alertmanager_oauth2_image }}"
     source: pull
   tags:
     - alertmanager
 
 - name: Start alertmanager-oauth2 service
-  systemd:
+  ansible.builtin.systemd:
     name: alertmanager-oauth2
     state: started
     daemon_reload: True
@@ -135,7 +134,7 @@
 - name: Remove install directory
   when:
     - alertmanager_installation == 'native'
-  file:
+  ansible.builtin.file:
     path: "/usr/local/src/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-amd64"
     state: absent
   tags:

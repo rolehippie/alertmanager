@@ -1,9 +1,8 @@
-# Standards: 1.2
 ---
 - name: Create system group
   when:
     - alertmanager_installation == 'native'
-  group:
+  ansible.builtin.group:
     name: alertmanager
     system: True
     state: present
@@ -13,7 +12,7 @@
 - name: Create system user
   when:
     - alertmanager_installation == 'native'
-  user:
+  ansible.builtin.user:
     name: alertmanager
     group: alertmanager
     password: "!"
@@ -27,7 +26,7 @@
 
 - name: Create required directories
   loop: "{{ alertmanager_default_folders + alertmanager_extra_folders }}"
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     owner: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nobody' }}"
     group: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nogroup' }}"
@@ -43,14 +42,14 @@
   failed_when: False
   changed_when: False
   check_mode: False
-  shell: /usr/bin/alertmanager --version 2>&1
+  ansible.builtin.shell: /usr/bin/alertmanager --version 2>&1
   tags:
     - alertmanager
 
 - name: Fact version change
   when:
     - alertmanager_installation == 'native'
-  set_fact:
+  ansible.builtin.set_fact:
     alertmanager_version_changed: "{{ alertmanager_version_check.rc != 0 or (alertmanager_version_check.stdout_lines is defined and alertmanager_version not in alertmanager_version_check.stdout_lines[0]) | bool }}"
   tags:
     - alertmanager
@@ -61,7 +60,7 @@
     - alertmanager_version_changed
   notify:
     - Restart alertmanager
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ alertmanager_download }}"
     dest: /usr/local/src
     remote_src: True
@@ -80,7 +79,7 @@
   loop:
     - alertmanager
     - amtool
-  copy:
+  ansible.builtin.copy:
     src: "/usr/local/src/alertmanager-{{ alertmanager_version }}.linux-amd64/{{ item }}"
     dest: "/usr/bin/{{ item }}"
     remote_src: True
@@ -97,7 +96,7 @@
   loop_control:
     label: "{{ item.name }}"
   when: item.url | default(False) and item.state | default("present") == "present"
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
     owner: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nobody' }}"
@@ -113,7 +112,7 @@
   loop_control:
     label: "{{ item.name }}"
   when: item.content | default(False) and item.state | default("present") == "present"
-  copy:
+  ansible.builtin.copy:
     content: "{{ item.content }}"
     dest: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
     owner: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nobody' }}"
@@ -129,7 +128,7 @@
   loop_control:
     label: "{{ item.name }}"
   when: item.src | default(False) and item.state | default("present") == "present"
-  copy:
+  ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
     owner: alertmanager
@@ -145,7 +144,7 @@
   loop_control:
     label: "{{ item.name }}"
   when: item.state | default("present") == "absent"
-  file:
+  ansible.builtin.file:
     path: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
     state: absent
   tags:
@@ -154,7 +153,7 @@
 - name: Write general config
   notify:
     - Restart alertmanager
-  template:
+  ansible.builtin.template:
     src: config.j2
     dest: /etc/alertmanager/config.yml
     owner: "{{ 'alertmanager' if alertmanager_installation == 'native' else 'nobody' }}"
@@ -166,7 +165,7 @@
 - name: Write default config
   notify:
     - Restart alertmanager
-  template:
+  ansible.builtin.template:
     src: default.j2
     dest: /etc/default/alertmanager
     owner: root
@@ -178,7 +177,7 @@
 - name: Write service file
   notify:
     - Restart alertmanager
-  template:
+  ansible.builtin.template:
     src: service.j2
     dest: /etc/systemd/system/alertmanager.service
     owner: root
@@ -191,14 +190,14 @@
   when:
     - alertmanager_installation == 'docker'
     - alertmanager_pull_image
-  docker_image:
+  community.docker.docker_image:
     name: "{{ alertmanager_image }}"
     source: pull
   tags:
     - alertmanager
 
 - name: Start alertmanager service
-  systemd:
+  ansible.builtin.systemd:
     name: alertmanager
     state: started
     daemon_reload: True
@@ -210,7 +209,7 @@
 - name: Remove install directory
   when:
     - alertmanager_installation == 'native'
-  file:
+  ansible.builtin.file:
     path: "/usr/local/src/alertmanager-{{ alertmanager_version }}.linux-amd64"
     state: absent
   tags:
@@ -218,7 +217,7 @@
 
 - name: Include oauth2 tasks
   when: alertmanager_oauth2_enabled | default(False)
-  include_tasks: oauth2.yml
+  ansible.builtin.include_tasks: oauth2.yml
   tags:
     - alertmanager
     - oauth2

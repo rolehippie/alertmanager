@@ -1,13 +1,12 @@
-# Standards: 1.2
 ---
 - name: Restart alertmanager
-  systemd:
+  ansible.builtin.systemd:
     name: alertmanager
     state: restarted
     daemon_reload: True
 
 - name: Restart alertmanager-oauth2
-  systemd:
+  ansible.builtin.systemd:
     name: alertmanager-oauth2
     state: restarted
     daemon_reload: yes
