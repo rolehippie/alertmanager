@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.0](https://github.com/rolehippie/alertmanager/compare/v1.6.1...v2.0.0) (2024-02-12)
+
+
+### Features
+
+* drop support for ubuntu 18.04 ([f360db7](https://github.com/rolehippie/alertmanager/commit/f360db799a63477cefc6f6905e2113251170d6df))
+* used full qualified collection names ([37b429f](https://github.com/rolehippie/alertmanager/commit/37b429f5613487e8b32941458c7a06e5f387f539))
+
+
+### Bugfixes
+
+* remove meta requirements and document used collections ([4644054](https://github.com/rolehippie/alertmanager/commit/4644054161a039929757dd6b12d160c5f4bfedce))
+* use right attribute for user shell ([ed3ea0a](https://github.com/rolehippie/alertmanager/commit/ed3ea0a549a170d5a8e796106765b70ffca7899f))
+
 ## [1.6.1](https://github.com/rolehippie/alertmanager/compare/v1.6.0...v1.6.1) (2023-09-25)
 
 
