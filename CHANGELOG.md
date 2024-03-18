@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/rolehippie/alertmanager/compare/v2.0.0...v2.1.0) (2024-03-18)
+
+
+### Features
+
+* **deps:** update minor versions ([3c1255b](https://github.com/rolehippie/alertmanager/commit/3c1255bfb6ad59ccd80acc0fe844201996560432))
+
 ## [2.0.0](https://github.com/rolehippie/alertmanager/compare/v1.6.1...v2.0.0) (2024-02-12)
 
 
