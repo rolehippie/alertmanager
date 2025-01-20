@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.3.0](https://github.com/rolehippie/alertmanager/compare/v2.2.1...v2.3.0) (2025-01-20)
+
+
+### Features
+
+* **deps:** update dependency oauth2-proxy/oauth2-proxy to v7.8.0 ([#36](https://github.com/rolehippie/alertmanager/issues/36)) ([33b48a1](https://github.com/rolehippie/alertmanager/commit/33b48a15b18f94981b8b84c59c423580f72b68d7))
+* **deps:** update dependency prometheus/alertmanager to v0.28.0 ([#38](https://github.com/rolehippie/alertmanager/issues/38)) ([7420b6c](https://github.com/rolehippie/alertmanager/commit/7420b6c62638417dbaea712b97bb4e2558f13237))
+
+
+### Bugfixes
+
+* **deps:** update dependency oauth2-proxy/oauth2-proxy to v7.8.1 ([#37](https://github.com/rolehippie/alertmanager/issues/37)) ([014802f](https://github.com/rolehippie/alertmanager/commit/014802f0f92c0320c18fbe2e092b44536a1a7c80))
+
 ## [2.2.1](https://github.com/rolehippie/alertmanager/compare/v2.2.0...v2.2.1) (2024-10-14)
 
 
