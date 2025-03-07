@@ -4,7 +4,7 @@ alertmanager_installation: native
 
 # @var alertmanager_version:description: Version of the release to install
 # renovate: datasource=github-releases depName=prometheus/alertmanager
-alertmanager_version: 0.28.0
+alertmanager_version: 0.28.1
 
 # @var alertmanager_download:description: URL to the archive of the release to install
 alertmanager_download: "https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz"
