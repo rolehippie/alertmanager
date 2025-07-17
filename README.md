@@ -1,4 +1,4 @@
-# alertmanager
+# workspace
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/alertmanager)
 [![General Workflow](https://github.com/rolehippie/alertmanager/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/alertmanager/actions/workflows/general.yml)
@@ -203,8 +203,10 @@ URL to the archive of the release to install
 #### Default value
 
 ```YAML
-alertmanager_download: https://github.com/prometheus/alertmanager/releases/download/v{{
-  alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz
+alertmanager_download: 
+  https://github.com/prometheus/alertmanager/releases/download/v{{ 
+  alertmanager_version }}/alertmanager-{{ alertmanager_version 
+  }}.linux-amd64.tar.gz
 ```
 
 ### alertmanager_extra_folders
@@ -535,8 +537,10 @@ alertmanager_oauth2_default_publish:
 #### Default value
 
 ```YAML
-alertmanager_oauth2_download: https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{
-  alertmanager_oauth2_version }}/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-amd64.tar.gz
+alertmanager_oauth2_download: 
+  https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ 
+  alertmanager_oauth2_version }}/oauth2-proxy-v{{ alertmanager_oauth2_version 
+  }}.linux-amd64.tar.gz
 ```
 
 ### alertmanager_oauth2_enabled
@@ -583,8 +587,8 @@ Docker image to use for deployment
 #### Default value
 
 ```YAML
-alertmanager_oauth2_image: quay.io/oauth2-proxy/oauth2-proxy:v{{ alertmanager_oauth2_version
-  }}
+alertmanager_oauth2_image: quay.io/oauth2-proxy/oauth2-proxy:v{{ 
+  alertmanager_oauth2_version }}
 ```
 
 ### alertmanager_oauth2_keycloak_url
@@ -750,8 +754,8 @@ Upstream target for the OAuth2 proxy
 #### Default value
 
 ```YAML
-alertmanager_oauth2_upstream: http://{{ alertmanager_listen_address if alertmanager_installation
-  == 'native' else 'alertmanager:9093' }}
+alertmanager_oauth2_upstream: http://{{ alertmanager_listen_address if 
+  alertmanager_installation == 'native' else 'alertmanager:9093' }}
 ```
 
 ### alertmanager_oauth2_version
@@ -761,7 +765,7 @@ Version of the OAuth2 Proxy to download
 #### Default value
 
 ```YAML
-alertmanager_oauth2_version: 7.9.0
+alertmanager_oauth2_version: 7.10.0
 ```
 
 ### alertmanager_pull_image
@@ -899,7 +903,6 @@ alertmanager_version: 0.28.1
 **_alertmanager_**
 
 **_oauth2_**
-
 
 ## Dependencies
 
