@@ -765,7 +765,7 @@ Version of the OAuth2 Proxy to download
 #### Default value
 
 ```YAML
-alertmanager_oauth2_version: 7.10.0
+alertmanager_oauth2_version: 7.11.0
 ```
 
 ### alertmanager_pull_image
