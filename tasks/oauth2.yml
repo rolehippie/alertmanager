@@ -1,6 +1,7 @@
 ---
 - name: Install required packages
-  when: alertmanager_oauth2_static_users | default(False)
+  when:
+    - alertmanager_oauth2_static_users | length > 0
   loop:
     - python3-passlib
     - python3-bcrypt
@@ -15,9 +16,9 @@
   when:
     - alertmanager_installation == 'native'
   register: alertmanager_oauth2_version_check
-  failed_when: False
-  changed_when: False
-  check_mode: False
+  failed_when: false
+  changed_when: false
+  check_mode: false
   ansible.builtin.shell: /usr/bin/alertmanager-oauth2 --version 2>&1
   tags:
     - alertmanager
@@ -39,7 +40,7 @@
   ansible.builtin.unarchive:
     src: "{{ alertmanager_oauth2_download }}"
     dest: /usr/local/src
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
   tags:
@@ -54,9 +55,9 @@
   notify:
     - Restart alertmanager-oauth2
   ansible.builtin.copy:
-    src: "/usr/local/src/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-amd64/oauth2-proxy"
+    src: "/usr/local/src/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-{{ alertmanager_oauth2_arch }}/oauth2-proxy"
     dest: /usr/bin/alertmanager-oauth2
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
     mode: u=rwx,g=rx,o=rx
@@ -65,7 +66,8 @@
     - oauth2
 
 - name: Write users config
-  when: alertmanager_oauth2_static_users | default(False)
+  when:
+    - alertmanager_oauth2_static_users | length > 0
   loop: "{{ alertmanager_oauth2_static_users }}"
   loop_control:
     label: "{{ item.username }}"
@@ -119,14 +121,25 @@
     source: pull
   tags:
     - alertmanager
+    - oauth2
+
+- name: Create docker network
+  when:
+    - alertmanager_installation == 'docker'
+    - false if alertmanager_oauth2_network is none else (alertmanager_oauth2_network | length > 0)
+  community.docker.docker_network:
+    name: '{{ alertmanager_oauth2_network }}'
+  tags:
+    - alertmanager
+    - oauth2
 
 - name: Start alertmanager-oauth2 service
   ansible.builtin.systemd:
     name: alertmanager-oauth2
     state: started
-    daemon_reload: True
-    masked: False
-    enabled: True
+    daemon_reload: true
+    masked: false
+    enabled: true
   tags:
     - alertmanager
     - oauth2
@@ -135,7 +148,7 @@
   when:
     - alertmanager_installation == 'native'
   ansible.builtin.file:
-    path: "/usr/local/src/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-amd64"
+    path: "/usr/local/src/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-{{ alertmanager_oauth2_arch }}"
     state: absent
   tags:
     - alertmanager

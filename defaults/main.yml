@@ -6,14 +6,17 @@ alertmanager_installation: native
 # renovate: datasource=github-releases depName=prometheus/alertmanager
 alertmanager_version: 0.28.1
 
+# @var alertmanager_arch:description: Target system architecture of the binary
+alertmanager_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
+
 # @var alertmanager_download:description: URL to the archive of the release to install
-alertmanager_download: "https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz"
+alertmanager_download: "https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-{{ alertmanager_arch }}.tar.gz"
 
 # @var alertmanager_image:description: Docker image to use for deployment
 alertmanager_image: "quay.io/prometheus/alertmanager:v{{ alertmanager_version }}"
 
 # @var alertmanager_pull_image:description: Pull image as part of the tasks
-alertmanager_pull_image: True
+alertmanager_pull_image: true
 
 # @var alertmanager_network:description: Optional docker network to attach
 alertmanager_network:
@@ -117,7 +120,7 @@ alertmanager_smtp_username:
 alertmanager_smtp_password:
 
 # @var alertmanager_smtp_require_tls:description: Require TLS for SMTP connection
-alertmanager_smtp_require_tls: True
+alertmanager_smtp_require_tls: true
 
 # @var alertmanager_receiver:description: Standard conect for alerts
 alertmanager_receiver:
@@ -145,7 +148,7 @@ alertmanager_routes: []
 #   - name: mail-devops
 #     email_configs:
 #       - to: devops@example.com
-#         send_resolved: True
+#         send_resolved: true
 # @end
 alertmanager_receivers: []
 
@@ -167,14 +170,17 @@ alertmanager_inhibit_rules: []
 alertmanager_listen_address: 0.0.0.0:9093
 
 # @var alertmanager_oauth2_enabled:description: Enable OAuth2 authentication service
-alertmanager_oauth2_enabled: False
+alertmanager_oauth2_enabled: false
 
 # @var alertmanager_oauth2_version:description: Version of the OAuth2 Proxy to download
 # renovate: datasource=github-releases depName=oauth2-proxy/oauth2-proxy
 alertmanager_oauth2_version: 7.12.0
 
+# @var alertmanager_oauth2_arch:description: Target system architecture of the binary
+alertmanager_oauth2_arch: "{{ alertmanager_arch }}"
+
 # @var alertmanager_oauth2_enabled:description: URL of the OAuth2 Proxy to download
-alertmanager_oauth2_download: "https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ alertmanager_oauth2_version }}/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-amd64.tar.gz"
+alertmanager_oauth2_download: "https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ alertmanager_oauth2_version }}/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-{{ alertmanager_oauth2_arch }}.tar.gz"
 
 # @var alertmanager_oauth2_image:description: Docker image to use for deployment
 alertmanager_oauth2_image: "quay.io/oauth2-proxy/oauth2-proxy:v{{ alertmanager_oauth2_version }}"
@@ -232,10 +238,10 @@ alertmanager_oauth2_upstream: "http://{{ alertmanager_listen_address if alertman
 alertmanager_oauth2_listen_address: 0.0.0.0:9092
 
 # @var alertmanager_oauth2_request_logging:description: Enable request logging for OAuth2 proxy
-alertmanager_oauth2_request_logging: False
+alertmanager_oauth2_request_logging: false
 
 # @var alertmanager_oauth2_access_logging:description: Enable access logging for OAuth2 proxy
-alertmanager_oauth2_access_logging: False
+alertmanager_oauth2_access_logging: false
 
 # @var alertmanager_oauth2_cookie_secret:description: Cookie secret used by OAuth2 proxy
 alertmanager_oauth2_cookie_secret:

@@ -3,12 +3,12 @@
   ansible.builtin.systemd:
     name: alertmanager
     state: restarted
-    daemon_reload: True
+    daemon_reload: true
 
 - name: Restart alertmanager-oauth2
   ansible.builtin.systemd:
     name: alertmanager-oauth2
     state: restarted
-    daemon_reload: yes
+    daemon_reload: true
 
 ...

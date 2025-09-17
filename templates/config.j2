@@ -1,38 +1,38 @@
 global:
   smtp_from: "{{ alertmanager_smtp_from }}"
   smtp_smarthost: "{{ alertmanager_smtp_smarthost }}"
-{% if alertmanager_smtp_username | default(False) %}
+{% if alertmanager_smtp_username | default(false) %}
   smtp_auth_username: "{{ alertmanager_smtp_username }}"
 {% endif %}
-{% if alertmanager_smtp_password | default(False) %}
+{% if alertmanager_smtp_password | default(false) %}
   smtp_auth_password: "{{ alertmanager_smtp_password }}"
 {% endif %}
   smtp_require_tls: {{ alertmanager_smtp_require_tls | lower }}
 
 route:
   receiver: "{{ alertmanager_receiver }}"
-{% if alertmanager_group_by | default(False) %}
+{% if alertmanager_group_by | default(false) %}
 
   group_by:
-    {{ alertmanager_group_by | to_nice_yaml(indent=2) | indent(width=4, first=False) | trim }}
+    {{ alertmanager_group_by | to_nice_yaml(indent=2) | indent(width=4, first=false) | trim }}
 {% endif %}
-{% if alertmanager_routes | default(False) %}
+{% if alertmanager_routes | default(false) %}
 
   routes:
-    {{ alertmanager_routes | to_nice_yaml(indent=2) | indent(width=4, first=False) | trim }}
+    {{ alertmanager_routes | to_nice_yaml(indent=2) | indent(width=4, first=false) | trim }}
 {% endif %}
-{% if alertmanager_receivers | default(False) %}
+{% if alertmanager_receivers | default(false) %}
 
 receivers:
-  {{ alertmanager_receivers | to_nice_yaml(indent=2) | indent(width=2, first=False) | trim }}
+  {{ alertmanager_receivers | to_nice_yaml(indent=2) | indent(width=2, first=false) | trim }}
 {% endif %}
-{% if alertmanager_inhibit_rules | default(False) %}
+{% if alertmanager_inhibit_rules | default(false) %}
 
 inhibit_rules:
-  {{ alertmanager_inhibit_rules | to_nice_yaml(indent=2) | indent(width=2, first=False) | trim }}
+  {{ alertmanager_inhibit_rules | to_nice_yaml(indent=2) | indent(width=2, first=false) | trim }}
 {% endif %}
-{% if alertmanager_template_paths | default(False) %}
+{% if alertmanager_template_paths | default(false) %}
 
 templates:
-  {{ alertmanager_template_paths | to_nice_yaml(indent=2) | indent(width=2, first=False) | trim }}
+  {{ alertmanager_template_paths | to_nice_yaml(indent=2) | indent(width=2, first=false) | trim }}
 {% endif %}
