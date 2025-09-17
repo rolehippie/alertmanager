@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.0](https://github.com/rolehippie/alertmanager/compare/v2.7.0...v2.8.0) (2025-09-17)
+
+
+### Features
+
+* apply new repo structure and update linting ([23cc62f](https://github.com/rolehippie/alertmanager/commit/23cc62f32a3d1b81d1b81c0b033598afe84f5e82))
+
 ## [2.7.0](https://github.com/rolehippie/alertmanager/compare/v2.6.0...v2.7.0) (2025-08-25)
 
 
