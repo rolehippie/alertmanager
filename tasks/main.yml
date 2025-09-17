@@ -4,7 +4,7 @@
     - alertmanager_installation == 'native'
   ansible.builtin.group:
     name: alertmanager
-    system: True
+    system: true
     state: present
   tags:
     - alertmanager
@@ -18,8 +18,8 @@
     password: "!"
     shell: /usr/sbin/nologin
     home: /var/lib/alertmanager
-    create_home: False
-    system: True
+    create_home: false
+    system: true
     state: present
   tags:
     - alertmanager
@@ -39,9 +39,9 @@
   when:
     - alertmanager_installation == 'native'
   register: alertmanager_version_check
-  failed_when: False
-  changed_when: False
-  check_mode: False
+  failed_when: false
+  changed_when: false
+  check_mode: false
   ansible.builtin.shell: /usr/bin/alertmanager --version 2>&1
   tags:
     - alertmanager
@@ -63,7 +63,7 @@
   ansible.builtin.unarchive:
     src: "{{ alertmanager_download }}"
     dest: /usr/local/src
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
   tags:
@@ -80,9 +80,9 @@
     - alertmanager
     - amtool
   ansible.builtin.copy:
-    src: "/usr/local/src/alertmanager-{{ alertmanager_version }}.linux-amd64/{{ item }}"
+    src: "/usr/local/src/alertmanager-{{ alertmanager_version }}.linux-{{ alertmanager_arch }}/{{ item }}"
     dest: "/usr/bin/{{ item }}"
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
     mode: u=rwx,g=rx,o=rx
@@ -95,7 +95,10 @@
   loop: "{{ alertmanager_default_templates + alertmanager_extra_templates }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.url | default(False) and item.state | default("present") == "present"
+  when:
+    - item.url is defined
+    - item.url is not none
+    - item.state | default("present") == "present"
   ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
@@ -111,7 +114,10 @@
   loop: "{{ alertmanager_default_templates + alertmanager_extra_templates }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.content | default(False) and item.state | default("present") == "present"
+  when:
+    - item.content is defined
+    - item.content is not none
+    - item.state | default("present") == "present"
   ansible.builtin.copy:
     content: "{{ item.content }}"
     dest: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
@@ -127,7 +133,10 @@
   loop: "{{ alertmanager_default_templates + alertmanager_extra_templates }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.src | default(False) and item.state | default("present") == "present"
+  when:
+    - item.src is defined
+    - item.src is not none
+    - item.state | default("present") == "present"
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
@@ -143,7 +152,8 @@
   loop: "{{ alertmanager_default_templates + alertmanager_extra_templates }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.state | default("present") == "absent"
+  when:
+    - item.state | default("present") == "absent"
   ansible.builtin.file:
     path: "{{ item.path | default('/etc/alertmanager/templates') }}/{{ item.name }}.tmpl"
     state: absent
@@ -196,13 +206,22 @@
   tags:
     - alertmanager
 
+- name: Create docker network
+  when:
+    - alertmanager_installation == 'docker'
+    - false if alertmanager_network is none else (alertmanager_network | length > 0)
+  community.docker.docker_network:
+    name: '{{ alertmanager_network }}'
+  tags:
+    - alertmanager
+
 - name: Start alertmanager service
   ansible.builtin.systemd:
     name: alertmanager
     state: started
-    daemon_reload: True
-    masked: False
-    enabled: True
+    daemon_reload: true
+    masked: false
+    enabled: true
   tags:
     - alertmanager
 
@@ -210,13 +229,14 @@
   when:
     - alertmanager_installation == 'native'
   ansible.builtin.file:
-    path: "/usr/local/src/alertmanager-{{ alertmanager_version }}.linux-amd64"
+    path: "/usr/local/src/alertmanager-{{ alertmanager_version }}.linux-{{ alertmanager_arch }}"
     state: absent
   tags:
     - alertmanager
 
 - name: Include oauth2 tasks
-  when: alertmanager_oauth2_enabled | default(False)
+  when:
+    - alertmanager_oauth2_enabled
   ansible.builtin.include_tasks: oauth2.yml
   tags:
     - alertmanager

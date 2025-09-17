@@ -1,4 +1,4 @@
-# workspace
+# alertmanager
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/alertmanager)
 [![General Workflow](https://github.com/rolehippie/alertmanager/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/alertmanager/actions/workflows/general.yml)
@@ -17,6 +17,7 @@ Building and improving this Ansible role have been sponsored by my current and p
 
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
+  - [alertmanager_arch](#alertmanager_arch)
   - [alertmanager_cpu_shares](#alertmanager_cpu_shares)
   - [alertmanager_data_retention](#alertmanager_data_retention)
   - [alertmanager_default_folders](#alertmanager_default_folders)
@@ -43,6 +44,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [alertmanager_number_of_cpus](#alertmanager_number_of_cpus)
   - [alertmanager_oauth2_access_logging](#alertmanager_oauth2_access_logging)
   - [alertmanager_oauth2_allowed_groups](#alertmanager_oauth2_allowed_groups)
+  - [alertmanager_oauth2_arch](#alertmanager_oauth2_arch)
   - [alertmanager_oauth2_client_id](#alertmanager_oauth2_client_id)
   - [alertmanager_oauth2_client_secret](#alertmanager_oauth2_client_secret)
   - [alertmanager_oauth2_cookie_secret](#alertmanager_oauth2_cookie_secret)
@@ -91,6 +93,17 @@ Building and improving this Ansible role have been sponsored by my current and p
 - Minimum Ansible version: `2.10`
 
 ## Default Variables
+
+### alertmanager_arch
+
+Target system architecture of the binary
+
+#### Default value
+
+```YAML
+alertmanager_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture
+  == 'arm64' else 'amd64' }}"
+```
 
 ### alertmanager_cpu_shares
 
@@ -205,8 +218,8 @@ URL to the archive of the release to install
 ```YAML
 alertmanager_download: 
   https://github.com/prometheus/alertmanager/releases/download/v{{ 
-  alertmanager_version }}/alertmanager-{{ alertmanager_version 
-  }}.linux-amd64.tar.gz
+  alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-{{ 
+  alertmanager_arch }}.tar.gz
 ```
 
 ### alertmanager_extra_folders
@@ -459,6 +472,16 @@ alertmanager_oauth2_allowed_groups:
   - /Group3
 ```
 
+### alertmanager_oauth2_arch
+
+Target system architecture of the binary
+
+#### Default value
+
+```YAML
+alertmanager_oauth2_arch: '{{ alertmanager_arch }}'
+```
+
 ### alertmanager_oauth2_client_id
 
 Client ID for OAuth2 authentication
@@ -540,7 +563,7 @@ alertmanager_oauth2_default_publish:
 alertmanager_oauth2_download: 
   https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ 
   alertmanager_oauth2_version }}/oauth2-proxy-v{{ alertmanager_oauth2_version 
-  }}.linux-amd64.tar.gz
+  }}.linux-{{ alertmanager_oauth2_arch }}.tar.gz
 ```
 
 ### alertmanager_oauth2_enabled
@@ -805,7 +828,7 @@ alertmanager_receivers:
   - name: mail-devops
     email_configs:
       - to: devops@example.com
-        send_resolved: True
+        send_resolved: true
 ```
 
 ### alertmanager_routes
