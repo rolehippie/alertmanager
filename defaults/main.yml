@@ -4,7 +4,7 @@ alertmanager_installation: native
 
 # @var alertmanager_version:description: Version of the release to install
 # renovate: datasource=github-releases depName=prometheus/alertmanager
-alertmanager_version: 0.28.1
+alertmanager_version: 0.29.0
 
 # @var alertmanager_arch:description: Target system architecture of the binary
 alertmanager_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
