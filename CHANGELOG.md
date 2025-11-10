@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.0.0](https://github.com/rolehippie/alertmanager/compare/v2.8.0...v3.0.0) (2025-11-10)
+
+
+### Features
+
+* **major:** update dependency community.docker to v5 ([#56](https://github.com/rolehippie/alertmanager/issues/56)) ([5974f88](https://github.com/rolehippie/alertmanager/commit/5974f888b56ca1b3d808f7971d8d0f36b251c895))
+* **major:** update dependency community.general to v12 ([#57](https://github.com/rolehippie/alertmanager/issues/57)) ([8a50b32](https://github.com/rolehippie/alertmanager/commit/8a50b32f6f824f6103a5765533f91f3c5971fd4a))
+* **minor:** update dependency oauth2-proxy/oauth2-proxy to v7.13.0 ([#59](https://github.com/rolehippie/alertmanager/issues/59)) ([dcefaaf](https://github.com/rolehippie/alertmanager/commit/dcefaafaa4f45ddcdb930ef3e00a81a2208b2e42))
+* **minor:** update dependency prometheus/alertmanager to v0.29.0 ([#58](https://github.com/rolehippie/alertmanager/issues/58)) ([11ae35c](https://github.com/rolehippie/alertmanager/commit/11ae35cfeb65d1b4b45a2b783478b2d7e0065091))
+
 ## [2.8.0](https://github.com/rolehippie/alertmanager/compare/v2.7.0...v2.8.0) (2025-09-17)
 
 
