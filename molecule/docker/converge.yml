@@ -2,6 +2,8 @@
 - name: Converge
   hosts: all
   vars:
+    docker_daemon_config:
+      storage-driver: vfs
     alertmanager_installation: docker
     alertmanager_domain: http://localhost:9093
     alertmanager_receiver: dummy
