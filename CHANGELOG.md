@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.0](https://github.com/rolehippie/alertmanager/compare/v3.0.0...v3.1.0) (2025-12-22)
+
+
+### Features
+
+* **minor:** update dependency community.general to >=12.1.0,<12.2.0 ([#64](https://github.com/rolehippie/alertmanager/issues/64)) ([5d818aa](https://github.com/rolehippie/alertmanager/commit/5d818aae870c806d09bf6136f8072621c28033a7))
+* **minor:** update dependency prometheus/alertmanager to v0.30.0 ([#65](https://github.com/rolehippie/alertmanager/issues/65)) ([75f8118](https://github.com/rolehippie/alertmanager/commit/75f81185c54098eead0bf9197fd6679ed3ab1645))
+
 ## [3.0.0](https://github.com/rolehippie/alertmanager/compare/v2.8.0...v3.0.0) (2025-11-10)
 
 
