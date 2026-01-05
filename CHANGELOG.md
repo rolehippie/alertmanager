@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/rolehippie/alertmanager/compare/v3.1.0...v3.2.0) (2026-01-05)
+
+
+### Features
+
+* **minor:** update dependency community.general to >=12.2.0,<12.3.0 ([#67](https://github.com/rolehippie/alertmanager/issues/67)) ([d9a7f5d](https://github.com/rolehippie/alertmanager/commit/d9a7f5d4375309afc5f1603b0e88b173e8e53d1d))
+
 ## [3.1.0](https://github.com/rolehippie/alertmanager/compare/v3.0.0...v3.1.0) (2025-12-22)
 
 
