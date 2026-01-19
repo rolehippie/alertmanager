@@ -1,5 +1,19 @@
 # Changelog
 
+## [3.3.0](https://github.com/rolehippie/alertmanager/compare/v3.2.0...v3.3.0) (2026-01-19)
+
+### Dependencies
+
+* **minor:** update dependency oauth2-proxy/oauth2-proxy to v7.14.0 ([#72](https://github.com/rolehippie/alertmanager/issues/72)) ([efbf830](https://github.com/rolehippie/alertmanager/commit/efbf8308fd252d2857a5204ec3af33e903eae2d9))
+* **patch:** update dependency oauth2-proxy/oauth2-proxy to v7.14.1 ([#73](https://github.com/rolehippie/alertmanager/issues/73)) ([7ed57de](https://github.com/rolehippie/alertmanager/commit/7ed57def69e6bd61e3cff15e425181c87f2487d5))
+* **patch:** update dependency oauth2-proxy/oauth2-proxy to v7.14.2 ([#74](https://github.com/rolehippie/alertmanager/issues/74)) ([e918f45](https://github.com/rolehippie/alertmanager/commit/e918f452973b7141571fb094e7060dafea8fa261))
+* **patch:** update dependency prometheus/alertmanager to v0.30.1 ([#70](https://github.com/rolehippie/alertmanager/issues/70)) ([be49a11](https://github.com/rolehippie/alertmanager/commit/be49a11759afa04918b07e235bf494c2864c8ac6))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([43dc075](https://github.com/rolehippie/alertmanager/commit/43dc075d345ecf79bb4fb3ecf29f07a514cac6c8))
+* **flake:** updated lockfile [skip ci] ([c57d820](https://github.com/rolehippie/alertmanager/commit/c57d820fa145334bfc06c22d642b1b7321d7ebf0))
+
 ## [3.2.0](https://github.com/rolehippie/alertmanager/compare/v3.1.0...v3.2.0) (2026-01-05)
 
 
