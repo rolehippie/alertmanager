@@ -918,7 +918,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-alertmanager_version: 0.30.1
+alertmanager_version: 0.31.0
 ```
 
 ## Discovered Tags
