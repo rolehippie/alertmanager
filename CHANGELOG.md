@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.4.0](https://github.com/rolehippie/alertmanager/compare/v3.3.0...v3.4.0) (2026-02-02)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=12.3.0,<12.4.0 ([#76](https://github.com/rolehippie/alertmanager/issues/76)) ([826816b](https://github.com/rolehippie/alertmanager/commit/826816be80e05ccc47546f118a36ad02f143d86b))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([f467264](https://github.com/rolehippie/alertmanager/commit/f46726436e89858711b7d96e3342003fc3177e56))
+* **flake:** updated lockfile [skip ci] ([369e785](https://github.com/rolehippie/alertmanager/commit/369e7854aead0b83b4e58ad95ae08023def91507))
+
 ## [3.3.0](https://github.com/rolehippie/alertmanager/compare/v3.2.0...v3.3.0) (2026-01-19)
 
 ### Dependencies
