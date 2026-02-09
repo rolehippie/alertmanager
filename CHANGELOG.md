@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.5.0](https://github.com/rolehippie/alertmanager/compare/v3.4.0...v3.5.0) (2026-02-09)
+
+### Dependencies
+
+* **minor:** update dependency prometheus/alertmanager to v0.31.0 ([#77](https://github.com/rolehippie/alertmanager/issues/77)) ([ece67f0](https://github.com/rolehippie/alertmanager/commit/ece67f0e6647a784958d4c364965313affd17b88))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([e6bc8bf](https://github.com/rolehippie/alertmanager/commit/e6bc8bfcf057cb2d51cf58ce0f77626ee7d8c007))
+
 ## [3.4.0](https://github.com/rolehippie/alertmanager/compare/v3.3.0...v3.4.0) (2026-02-02)
 
 ### Dependencies
