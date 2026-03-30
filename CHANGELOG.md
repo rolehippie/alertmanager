@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.8.0](https://github.com/rolehippie/alertmanager/compare/v3.7.0...v3.8.0) (2026-03-30)
+
+### Dependencies
+
+* **minor:** update dependency community.docker to >=5.1.0,<5.2.0 ([#85](https://github.com/rolehippie/alertmanager/issues/85)) ([0157927](https://github.com/rolehippie/alertmanager/commit/01579276683c80d49227db2381891fe909983a92))
+* **minor:** update dependency community.general to >=12.5.0,<12.6.0 ([#86](https://github.com/rolehippie/alertmanager/issues/86)) ([3dd5141](https://github.com/rolehippie/alertmanager/commit/3dd514150fb77c8c7ce77b6e3217cfd0ccec8427))
+* **patch:** update dependency oauth2-proxy/oauth2-proxy to v7.15.1 ([#84](https://github.com/rolehippie/alertmanager/issues/84)) ([799b844](https://github.com/rolehippie/alertmanager/commit/799b844093200af590034d7fa1389e1bd0ca8ff8))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([9fc3a32](https://github.com/rolehippie/alertmanager/commit/9fc3a32711123f42ecc78a6adb8d9a4c925d93bb))
+
 ## [3.7.0](https://github.com/rolehippie/alertmanager/compare/v3.6.0...v3.7.0) (2026-03-23)
 
 ### Dependencies
