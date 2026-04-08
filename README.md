@@ -101,8 +101,7 @@ Target system architecture of the binary
 #### Default value
 
 ```YAML
-alertmanager_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture
-  == 'arm64' else 'amd64' }}"
+alertmanager_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
 ```
 
 ### alertmanager_cpu_shares
@@ -216,10 +215,7 @@ URL to the archive of the release to install
 #### Default value
 
 ```YAML
-alertmanager_download: 
-  https://github.com/prometheus/alertmanager/releases/download/v{{ 
-  alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-{{ 
-  alertmanager_arch }}.tar.gz
+alertmanager_download: https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-{{ alertmanager_arch }}.tar.gz
 ```
 
 ### alertmanager_extra_folders
@@ -479,7 +475,7 @@ Target system architecture of the binary
 #### Default value
 
 ```YAML
-alertmanager_oauth2_arch: '{{ alertmanager_arch }}'
+alertmanager_oauth2_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
 ```
 
 ### alertmanager_oauth2_client_id
@@ -560,10 +556,7 @@ alertmanager_oauth2_default_publish:
 #### Default value
 
 ```YAML
-alertmanager_oauth2_download: 
-  https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ 
-  alertmanager_oauth2_version }}/oauth2-proxy-v{{ alertmanager_oauth2_version 
-  }}.linux-{{ alertmanager_oauth2_arch }}.tar.gz
+alertmanager_oauth2_download: https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ alertmanager_oauth2_version }}/oauth2-proxy-v{{ alertmanager_oauth2_version }}.linux-{{ alertmanager_oauth2_arch }}.tar.gz
 ```
 
 ### alertmanager_oauth2_enabled
@@ -610,8 +603,7 @@ Docker image to use for deployment
 #### Default value
 
 ```YAML
-alertmanager_oauth2_image: quay.io/oauth2-proxy/oauth2-proxy:v{{ 
-  alertmanager_oauth2_version }}
+alertmanager_oauth2_image: quay.io/oauth2-proxy/oauth2-proxy:v{{ alertmanager_oauth2_version }}
 ```
 
 ### alertmanager_oauth2_keycloak_url
@@ -689,7 +681,7 @@ Optional docker network to attach on OAuth2 Proxy
 #### Default value
 
 ```YAML
-alertmanager_oauth2_network: '{{ alertmanager_network }}'
+alertmanager_oauth2_network:
 ```
 
 ### alertmanager_oauth2_number_of_cpus
@@ -725,7 +717,7 @@ Pull OAuth2 Proxy image as part of the tasks
 #### Default value
 
 ```YAML
-alertmanager_oauth2_pull_image: '{{ alertmanager_pull_image }}'
+alertmanager_oauth2_pull_image: true
 ```
 
 ### alertmanager_oauth2_request_logging
@@ -777,8 +769,7 @@ Upstream target for the OAuth2 proxy
 #### Default value
 
 ```YAML
-alertmanager_oauth2_upstream: http://{{ alertmanager_listen_address if 
-  alertmanager_installation == 'native' else 'alertmanager:9093' }}
+alertmanager_oauth2_upstream: http://{{ alertmanager_listen_address if alertmanager_installation == 'native' else 'alertmanager:9093' }}
 ```
 
 ### alertmanager_oauth2_version
@@ -918,7 +909,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-alertmanager_version: 0.31.1
+alertmanager_version: 0.32.0
 ```
 
 ## Discovered Tags
