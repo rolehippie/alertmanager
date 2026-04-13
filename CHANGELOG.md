@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.9.0](https://github.com/rolehippie/alertmanager/compare/v3.8.0...v3.9.0) (2026-04-13)
+
+### Dependencies
+
+* **minor:** update dependency community.docker to >=5.2.0,<5.3.0 ([#87](https://github.com/rolehippie/alertmanager/issues/87)) ([f08ff03](https://github.com/rolehippie/alertmanager/commit/f08ff03cebb07d9ea71c13f65b8e152cd82a26bb))
+* **minor:** update dependency prometheus/alertmanager to v0.32.0 ([#88](https://github.com/rolehippie/alertmanager/issues/88)) ([f9f61d2](https://github.com/rolehippie/alertmanager/commit/f9f61d29afbcdcf1f6f9529ce2ab4cafb8603312))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([4885f23](https://github.com/rolehippie/alertmanager/commit/4885f23bdfa5256e2521f7b7eb061d99dc10aa72))
+* **flake:** updated lockfile [skip ci] ([c7f3175](https://github.com/rolehippie/alertmanager/commit/c7f3175362f51c4718e05b0f0bff78f496e2ce3b))
+
 ## [3.8.0](https://github.com/rolehippie/alertmanager/compare/v3.7.0...v3.8.0) (2026-03-30)
 
 ### Dependencies
