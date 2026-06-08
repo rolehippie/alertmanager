@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.1](https://github.com/rolehippie/alertmanager/compare/v4.0.0...v4.0.1) (2026-06-08)
+
+### Dependencies
+
+* **patch:** update version prefix to v0.32.2 ([#94](https://github.com/rolehippie/alertmanager/issues/94)) ([70e9c36](https://github.com/rolehippie/alertmanager/commit/70e9c36e7b394ca99ff3b9a4f64346144f7c2f6d))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([9923161](https://github.com/rolehippie/alertmanager/commit/9923161575798d825e3114eb52966fd04d59494e))
+* **flake:** updated lockfile [skip ci] ([4da1f3a](https://github.com/rolehippie/alertmanager/commit/4da1f3ae89fe37f65f8a7025ca2bfe1c94dc059f))
+
 ## [4.0.0](https://github.com/rolehippie/alertmanager/compare/v3.10.1...v4.0.0) (2026-05-25)
 
 ### Dependencies
