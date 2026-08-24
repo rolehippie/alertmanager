@@ -1,5 +1,22 @@
 # Changelog
 
+## [4.5.0](https://github.com/rolehippie/alertmanager/compare/v4.4.0...v4.5.0) (2026-08-24)
+
+### Features
+
+* switch to ansible_facts usage ([d7a08ad](https://github.com/rolehippie/alertmanager/commit/d7a08ad20356835bd1117211c71d2d6dedef91b2))
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.3.0,<13.4.0 ([#107](https://github.com/rolehippie/alertmanager/issues/107)) ([8dd6df3](https://github.com/rolehippie/alertmanager/commit/8dd6df3a3452b4c31e9273f12db311ce64b4ef8d))
+* **minor:** update dependency pipx:ansible-doctor to v8.4.0 ([#105](https://github.com/rolehippie/alertmanager/issues/105)) ([87754aa](https://github.com/rolehippie/alertmanager/commit/87754aa6fa3f27740cd92d702c340553f9ddf102))
+* **minor:** update dependency pipx:ansible-lint to v26.8.0 ([#109](https://github.com/rolehippie/alertmanager/issues/109)) ([4ffc649](https://github.com/rolehippie/alertmanager/commit/4ffc649de37a9e83368225ba8569d0d5cab44015))
+* **minor:** update dependency pipx:molecule to v26.8.0 ([#110](https://github.com/rolehippie/alertmanager/issues/110)) ([8f36d03](https://github.com/rolehippie/alertmanager/commit/8f36d03f6016fdbd911d02b278b7287254508bcf))
+* **minor:** update dependency prometheus/alertmanager to v0.34.0 ([#111](https://github.com/rolehippie/alertmanager/issues/111)) ([7fcbb4e](https://github.com/rolehippie/alertmanager/commit/7fcbb4ec6f9a359b0e783f183206211b1f7d3c35))
+* **patch:** update dependency pipx:ansible-core to v2.21.3 ([#106](https://github.com/rolehippie/alertmanager/issues/106)) ([f5692c1](https://github.com/rolehippie/alertmanager/commit/f5692c15844d328bfd6058ee1ee7fbb8633f725c))
+* **patch:** update dependency pre-commit to v4.6.2 ([#108](https://github.com/rolehippie/alertmanager/issues/108)) ([298f1b6](https://github.com/rolehippie/alertmanager/commit/298f1b62de2cd4e222c9b51a326a4d10aa828db7))
+* **patch:** update dependency python to v3.14.7 ([#103](https://github.com/rolehippie/alertmanager/issues/103)) ([4b4df2a](https://github.com/rolehippie/alertmanager/commit/4b4df2a987ce01e3adc6ccbed5e70548667788d8))
+
 ## [4.4.0](https://github.com/rolehippie/alertmanager/compare/v4.3.0...v4.4.0) (2026-07-27)
 
 ## [4.3.0](https://github.com/rolehippie/alertmanager/compare/v4.2.1...v4.3.0) (2026-07-20)
