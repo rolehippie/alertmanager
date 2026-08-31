@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.5.1](https://github.com/rolehippie/alertmanager/compare/v4.5.0...v4.5.1) (2026-08-31)
+
+### Dependencies
+
+* **patch:** update dependency pipx:ansible-doctor to v8.4.1 ([#112](https://github.com/rolehippie/alertmanager/issues/112)) ([d866d58](https://github.com/rolehippie/alertmanager/commit/d866d58600b948adbc566d8fb9ddda55a9da1edc))
+
 ## [4.5.0](https://github.com/rolehippie/alertmanager/compare/v4.4.0...v4.5.0) (2026-08-24)
 
 ### Features
