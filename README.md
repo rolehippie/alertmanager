@@ -101,7 +101,7 @@ Target system architecture of the binary
 #### Default value
 
 ```YAML
-alertmanager_arch: "{{ 'arm64' if ansible_facts['architecture'] == 'aarch64' or ansible_facts['architecture'] == 'arm64' else 'amd64' }}"
+alertmanager_arch: "{{ 'arm64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else 'amd64' }}"
 ```
 
 ### alertmanager_cpu_shares
@@ -475,7 +475,7 @@ Target system architecture of the binary
 #### Default value
 
 ```YAML
-alertmanager_oauth2_arch: "{{ 'arm64' if ansible_facts['architecture'] == 'aarch64' or ansible_facts['architecture'] == 'arm64' else 'amd64' }}"
+alertmanager_oauth2_arch: "{{ 'arm64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else 'amd64' }}"
 ```
 
 ### alertmanager_oauth2_client_id
