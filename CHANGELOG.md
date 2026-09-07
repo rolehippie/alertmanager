@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.6.0](https://github.com/rolehippie/alertmanager/compare/v4.5.1...v4.6.0) (2026-09-07)
+
+### Features
+
+* add separate requirements for molecule run ([ce142aa](https://github.com/rolehippie/alertmanager/commit/ce142aa261b2851fe74c378370dfaebb0187c211))
+* use new required facts as attributes ([e0217ff](https://github.com/rolehippie/alertmanager/commit/e0217ffd3e4f6ab57fa6a159cb36265a7b435ff8))
+
+### Dependencies
+
+* **minor:** update dependency community.docker to >=5.3.0,<5.4.0 ([#113](https://github.com/rolehippie/alertmanager/issues/113)) ([1d26e1e](https://github.com/rolehippie/alertmanager/commit/1d26e1e315fcccbf35624074caec087ccdd9a238))
+
 ## [4.5.1](https://github.com/rolehippie/alertmanager/compare/v4.5.0...v4.5.1) (2026-08-31)
 
 ### Dependencies
