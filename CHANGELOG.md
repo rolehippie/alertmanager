@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.7.0](https://github.com/rolehippie/alertmanager/compare/v4.6.0...v4.7.0) (2026-09-14)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.4.0,<13.5.0 ([#114](https://github.com/rolehippie/alertmanager/issues/114)) ([dd25547](https://github.com/rolehippie/alertmanager/commit/dd25547ee034d84ba6659cd62d7c36256852ad80))
+* **mise:** update dependency pipx:ansible-core to v2.21.4 ([#115](https://github.com/rolehippie/alertmanager/issues/115)) ([7bd015d](https://github.com/rolehippie/alertmanager/commit/7bd015d1775d0db2cc62537e75543495f65d9fcd))
+* **mise:** update dependency prek to v0.5.3 ([#116](https://github.com/rolehippie/alertmanager/issues/116)) ([7623018](https://github.com/rolehippie/alertmanager/commit/7623018fae52d7fce1d804657b5c4285b5f14269))
+
 ## [4.6.0](https://github.com/rolehippie/alertmanager/compare/v4.5.1...v4.6.0) (2026-09-07)
 
 ### Features
