@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.7.1](https://github.com/rolehippie/alertmanager/compare/v4.7.0...v4.7.1) (2026-09-21)
+
+### Dependencies
+
+* **mise:** update dependency pipx:ansible-doctor to v8.4.2 ([#117](https://github.com/rolehippie/alertmanager/issues/117)) ([9149f94](https://github.com/rolehippie/alertmanager/commit/9149f943c5ed945c89c2e78f25f2fe5ff426c10a))
+* **patch:** update dependency prometheus/alertmanager to v0.34.1 ([#118](https://github.com/rolehippie/alertmanager/issues/118)) ([051227c](https://github.com/rolehippie/alertmanager/commit/051227c5549e12e264bafe204b395d5f3affdc3b))
+
 ## [4.7.0](https://github.com/rolehippie/alertmanager/compare/v4.6.0...v4.7.0) (2026-09-14)
 
 ### Dependencies
