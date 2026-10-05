@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.8.0](https://github.com/rolehippie/alertmanager/compare/v4.7.1...v4.8.0) (2026-10-05)
+
+### Dependencies
+
+* **minor:** update dependency community.docker to >=5.4.0,<5.5.0 ([#124](https://github.com/rolehippie/alertmanager/issues/124)) ([4d680c3](https://github.com/rolehippie/alertmanager/commit/4d680c3dcf2d1e1b17301fde47a618dc548bb622))
+* **mise:** update dependency pipx:ansible-core to v2.21.5 ([#126](https://github.com/rolehippie/alertmanager/issues/126)) ([d919eed](https://github.com/rolehippie/alertmanager/commit/d919eed79556f041aff1f97f75c87ef731cc6345))
+* **mise:** update dependency pipx:ansible-lint to v26.9.0 ([#119](https://github.com/rolehippie/alertmanager/issues/119)) ([1d4a6a2](https://github.com/rolehippie/alertmanager/commit/1d4a6a2045da54386a76f5b58ca0dd88c1b415e3))
+* **mise:** update dependency pipx:molecule to v26.9.0 ([#120](https://github.com/rolehippie/alertmanager/issues/120)) ([cc102ad](https://github.com/rolehippie/alertmanager/commit/cc102ad3b3d24ca47dabef9cf9a2e65f7d52286b))
+* **mise:** update dependency prek to v0.5.4 ([#121](https://github.com/rolehippie/alertmanager/issues/121)) ([395fc64](https://github.com/rolehippie/alertmanager/commit/395fc64ea7fc51f61fb7de2a215bf04754a82003))
+* **mise:** update dependency prek to v0.5.5 ([#125](https://github.com/rolehippie/alertmanager/issues/125)) ([f9d61a4](https://github.com/rolehippie/alertmanager/commit/f9d61a4dbf818c2c794364c05bfc64135a4f83f3))
+* **patch:** update dependency oauth2-proxy/oauth2-proxy to v7.15.5 ([#123](https://github.com/rolehippie/alertmanager/issues/123)) ([8a4ac42](https://github.com/rolehippie/alertmanager/commit/8a4ac422f86f6deec7d4dddfde55da4580cf395d))
+
 ## [4.7.1](https://github.com/rolehippie/alertmanager/compare/v4.7.0...v4.7.1) (2026-09-21)
 
 ### Dependencies
