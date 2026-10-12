@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.9.0](https://github.com/rolehippie/alertmanager/compare/v4.8.0...v4.9.0) (2026-10-12)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.5.0,<13.6.0 ([#128](https://github.com/rolehippie/alertmanager/issues/128)) ([bc89a2a](https://github.com/rolehippie/alertmanager/commit/bc89a2adcf6bba192df9933661ff66a07f8e18e3))
+* **mise:** update dependency pipx:ansible-doctor to v8.4.3 ([#127](https://github.com/rolehippie/alertmanager/issues/127)) ([2e2bd0b](https://github.com/rolehippie/alertmanager/commit/2e2bd0bb4d7cee5c8dc5f4c24c5ee4d5ee8bb6c8))
+* **mise:** update dependency pipx:molecule to v26.10.0 ([#130](https://github.com/rolehippie/alertmanager/issues/130)) ([ce31d34](https://github.com/rolehippie/alertmanager/commit/ce31d34f7d3a014d6259667ab8ddbd6ae23d2914))
+
 ## [4.8.0](https://github.com/rolehippie/alertmanager/compare/v4.7.1...v4.8.0) (2026-10-05)
 
 ### Dependencies
