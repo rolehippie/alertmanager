@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.9.1](https://github.com/rolehippie/alertmanager/compare/v4.9.0...v4.9.1) (2026-11-02)
+
+### Dependencies
+
+* **mise:** update dependency pipx:ansible-lint to v26.10.0 ([#129](https://github.com/rolehippie/alertmanager/issues/129)) ([422ec48](https://github.com/rolehippie/alertmanager/commit/422ec48ad7cda5b032f4091f0d28b06dd8f61a49))
+* **mise:** update dependency pipx:ansible-lint to v26.10.1 ([#131](https://github.com/rolehippie/alertmanager/issues/131)) ([cc49b96](https://github.com/rolehippie/alertmanager/commit/cc49b9631b334819183f95506712c9b30609a7e2))
+* **mise:** update dependency prek to v0.5.6 ([#132](https://github.com/rolehippie/alertmanager/issues/132)) ([bdf3412](https://github.com/rolehippie/alertmanager/commit/bdf3412c5bccc3c34e3abaedb8f246dfea742cfa))
+* **mise:** update dependency prek to v0.5.7 ([#133](https://github.com/rolehippie/alertmanager/issues/133)) ([3ab94a7](https://github.com/rolehippie/alertmanager/commit/3ab94a7e9249b200cd55f28579995dc7f289f83c))
+* **mise:** update dependency prek to v0.5.9 ([#136](https://github.com/rolehippie/alertmanager/issues/136)) ([9c5c5f2](https://github.com/rolehippie/alertmanager/commit/9c5c5f2af527b574f08f3c9bd0f78e6c0812eba8))
+* **mise:** update node.js to v26 ([#134](https://github.com/rolehippie/alertmanager/issues/134)) ([9dc6e71](https://github.com/rolehippie/alertmanager/commit/9dc6e7123ceb41ac255bfbf1c3868eb24e005985))
+* **patch:** update dependency prometheus/alertmanager to v0.34.2 ([a57f0b3](https://github.com/rolehippie/alertmanager/commit/a57f0b342e5b8911a8b985f92de2f0952f61cc49))
+
 ## [4.9.0](https://github.com/rolehippie/alertmanager/compare/v4.8.0...v4.9.0) (2026-10-12)
 
 ### Dependencies
